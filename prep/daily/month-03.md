@@ -10,12 +10,14 @@ Pattern tags in `code` — see [patterns.md](../patterns.md).
 
 ## Week 9 — Binary Trees
 
+> **RADIO gets learned this week, Tuesday, in 30 minutes** — then applied to every design question from here to Month 5. Don't spend longer on the framework itself; it's five buckets. The difficulty is what fills them, and that only comes from the eight design questions in Weeks 9–16.
+
 | Day | Plan |
 |---|---|
 | **Mon** | **DSA:** All 3 traversals, recursive + iterative `dfs-recursive` · Level order `bfs-level` · Zigzag `bfs-level`<br>**React:** perf — `React.memo`, `lazy`, `Suspense`, Profiler on your own MC builds<br>**Rev:** LRU cache `hashmap-dll` |
-| **Tue** | **Project:** scaffold — Vite + React + TS, routing, design tokens, layout shell<br>**DSA:** Height `dfs-recursive` · Balanced tree check `dfs-bottom-up` *(return height AND validity — the whole point of bottom-up)*<br>**SD:** **design an autocomplete** — debounce, cancellation, caching, ranking, a11y. Out loud, 40 min. |
+| **Tue** | **Project:** scaffold — Vite + React + TS, routing, design tokens, layout shell<br>**DSA:** Height `dfs-recursive` · Balanced tree check `dfs-bottom-up` *(return height AND validity — the whole point of bottom-up)*<br>**SD (first half, 30 min):** learn **RADIO** — Requirements → Architecture → Data model → Interface → Optimizations (see [how-to-study.md](../how-to-study.md)). Write it on a card and keep it visible for every design answer from here on.<br>**SD (second half, 30 min):** **design an autocomplete** — your first attempt, out loud, RADIO in order. It will be bad. That's the point — Thursday is where it gets fixed. |
 | **Wed** | **DSA:** Diameter `dfs-bottom-up` · Max path sum `dfs-bottom-up` *(return best-downward, record best-through — the key distinction)* · Identical trees `dfs-recursive`<br>**React:** why memo usually does nothing, and how to find the render actually costing you<br>**Rev:** Level order traversal `bfs-level` |
-| **Thu** | **Project:** API — products endpoint with pagination + filtering, seeded 10k rows<br>**DSA:** Boundary traversal `path-tracking` · Top view `bfs-level` *(BFS + horizontal distance map)*<br>**SD:** critique your own autocomplete answer against a reference solution |
+| **Thu** | **Project:** API — products endpoint with pagination + filtering, seeded 10k rows<br>**DSA:** Boundary traversal `path-tracking` · Top view `bfs-level` *(BFS + horizontal distance map)*<br>**SD:** critique Tuesday's autocomplete answer against a reference. Score yourself per RADIO bucket — **which letter did you skip?** Almost everyone skips R and jumps to A. Write the gap down; it's the same gap next time. |
 | **Fri** | **DSA:** Bottom view `bfs-level` · Right/left view `bfs-level` · Symmetric tree `dfs-recursive`<br>**React:** code splitting by route, `Suspense` boundaries, loading UX<br>**Rev:** Diameter `dfs-bottom-up` |
 | **Wknd** | *(if available)* 4h: project integration — grid rendering real API data end to end |
 
@@ -63,4 +65,5 @@ Pattern tags in `code` — see [patterns.md](../patterns.md).
 - [ ] The `window-variable` template written from memory, and you can name which of the 10 problems it solves
 - [ ] Project live: listing → filters → cart, on your own API
 - [ ] Optimistic UI with a rollback path you can demo failing
+- [ ] RADIO written from memory, and used in all 4 design answers
 - [ ] 4 frontend system design problems answered out loud and critiqued
