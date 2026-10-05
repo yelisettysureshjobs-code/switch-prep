@@ -23,7 +23,7 @@ Pattern tags in `code` — see [patterns.md](../patterns.md).
 | **Tue** | **MC:** virtualized list from scratch — fixed height, then variable height (no library)<br>**DSA:** Start of cycle `slow-fast` *(know why the reset-to-head step works)* · Length of loop `slow-fast`<br>**SD:** browser rendering pipeline — parse, style, layout, paint, composite; reflow vs repaint |
 | **Wed** | **DSA:** Remove Nth from end `slow-fast` + `dummy-node` · Merge two sorted LL `ll-merge` · Add two numbers `dummy-node`<br>**React:** render phase vs commit phase, batching, StrictMode double-render<br>**Rev:** Reverse LL recursive `pointer-reversal` |
 | **Thu** | **MC:** finish virtualized list — overscan, scroll-to-index, resize handling<br>**DSA:** Palindrome LL `slow-fast` + `pointer-reversal` · Odd-even LL `dummy-node`<br>**SD:** what actually makes a page slow — measure, don't guess |
-| **Fri** | **DSA:** Sort LL `ll-merge` + `slow-fast` *(merge sort on a list)* · Reverse in K groups `pointer-reversal` · Rotate LL `pointer-reversal`<br>**React:** controlled vs uncontrolled, lifting state, composition over prop drilling<br>**Rev:** Merge two sorted LL `ll-merge` |
+| **Fri** | **DSA:** Sort LL `ll-merge` + `slow-fast` *(merge sort on a list)* · Reverse in K groups `pointer-reversal` · Rotate LL `pointer-reversal`<br>**CSS II:** flexbox, grid, responsive (media + container queries) — build a holy-grail layout and a card grid, no framework<br>**Rev:** Merge two sorted LL `ll-merge` |
 | **Wknd** | *(if available)* 4h: mock interview #1 — 1 DSA + 1 JS round. Expect it to go badly; that's the point. |
 
 ## Week 7 — Recursion & Backtracking
@@ -32,7 +32,7 @@ Pattern tags in `code` — see [patterns.md](../patterns.md).
 |---|---|
 | **Mon** | **DSA:** Subsets I & II `pick-nonpick` · Subset sum `pick-nonpick`<br>**React:** `useEffect` — dependency array, cleanup timing, the stale closure trap<br>**Rev:** Reverse in K groups `pointer-reversal` |
 | **Tue** | **MC:** nested comments — recursive rendering, collapse, reply, depth limits<br>**DSA:** Combination sum I & II `backtracking-build` *(I reuses, II doesn't — the difference is one index)*<br>**SD:** HTTP caching — Cache-Control, ETag, stale-while-revalidate |
-| **Wed** | **DSA:** Permutations I & II `permutation-swap` · Letter combinations `backtracking-build`<br>**React:** `useMemo` / `useCallback` — when they help, when they're noise, how to prove it<br>**Rev:** Combination sum I `backtracking-build` |
+| **Wed** | **DSA:** Permutations I & II `permutation-swap` · Letter combinations `backtracking-build`<br>**HTML:** semantic elements, forms + native validation, `<script>` async / defer / module, storage vs cookies *(`useMemo` / `useCallback` moved to W9 Wed)*<br>**Rev:** Combination sum I `backtracking-build` |
 | **Thu** | **MC:** finish nested comments — optimistic add/delete, edit in place<br>**DSA:** Palindrome partitioning `backtracking-build` + `expand-center`<br>**SD:** cookies, SameSite, CORS preflight, credentials |
 | **Fri** | **DSA:** N-Queens `board-backtracking` · Rat in a maze `board-backtracking` · Word search `board-backtracking`<br>**React:** `useRef`, `useLayoutEffect`, custom hooks — extract 3 from your MC builds<br>**Rev:** Permutations `permutation-swap` |
 | **Wknd** | *(if available)* 4h: refactor all MC builds into a shared component folder — this becomes the project's UI kit |
@@ -56,5 +56,6 @@ Pattern tags in `code` — see [patterns.md](../patterns.md).
 - [ ] ~96 problems committed
 - [ ] You reach for `monotonic-stack` the moment you hear "next greater"
 - [ ] Every polyfill written cold, no lookups
-- [ ] Can explain reconciliation, effect timing and memoization out loud
+- [ ] Can explain reconciliation and effect timing out loud
+- [ ] Can choose flex vs grid for a layout and say why
 - [ ] One mock survived · project spec written

@@ -107,6 +107,12 @@ Every problem in `daily/` is tagged with one of these.
 | `two-heaps` | Running median — max-heap for the low half, min-heap for the high half |
 | `greedy-heap` | Repeatedly take the current best — task scheduler, connect ropes |
 
+## Tries
+
+| Pattern | Trigger |
+|---|---|
+| `trie` | Many strings queried by **prefix** — autocomplete, "starts with", "every prefix is also a word". A node is a children map plus an end-of-word flag |
+
 ## Greedy
 
 | Pattern | Trigger |

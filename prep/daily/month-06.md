@@ -33,7 +33,7 @@ By now interviews drive the schedule, not the plan. **The rule: every real inter
 | **Mon** | DSA mixed timed · re-solve the two problems you fumbled live |
 | **Tue** | **Mock #3 — JS/React deep dive** · post-mortem |
 | **Wed** | Gap patching · project demo rehearsal — 3 minutes, no fumbling, no apologising for scope |
-| **Thu** | **Mock #4 — system design** · post-mortem |
+| **Thu** | **Mock #4 — system design, backend HLD this time** (mock #3 was frontend) · post-mortem |
 | **Fri** | Behavioural rehearsal out loud · pipeline review: what's stalled, who to follow up with |
 | **Wknd** | *(if available)* 4h: real interviews, or record + review a mock |
 

@@ -42,7 +42,7 @@ Maintenance mode. You are not learning new things this month; you are converting
 | Day | Plan |
 |---|---|
 | **Mon** | Referral outreach · **most traditional loop of the four** — expect CS fundamentals questions |
-| **Tue** | OS/DBMS/networks skim (Week 19 material) if you haven't already |
+| **Tue** | Re-skim Week 19 — DBMS and networks first, OS last |
 | **Wed** | DSA timed · their domain: search, filters, date ranges, pricing, availability — all shapes you've built |
 | **Thu** | Full mock loop |
 | **Fri** | Interviews · pipeline review |

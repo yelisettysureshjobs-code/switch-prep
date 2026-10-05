@@ -1,6 +1,6 @@
 # Month 1 — Arrays & Binary Search (Weeks 1–4)
 
-Legend: **DSA** 2.5h (Mon/Wed/Fri) or 1h (Tue/Thu) · **JS** 1h · **MC** machine coding 2h · **SD/BE** 1h · **Rev** 30 min cold re-solve
+Legend: **DSA** 2.5h (Mon/Wed/Fri) or 1h (Tue/Thu) · **JS** 1h (four of these slots in Months 1–2 are DOM / CSS / HTML) · **MC** machine coding 2h · **SD/BE** 1h · **Rev** 30 min cold re-solve
 Pattern tags in `code` — see [patterns.md](../patterns.md). Problems are from **Striver's A2Z sheet**; verify names against takeuforward.org as you go.
 
 > You already have `pascalTriangle`, `setMatrixZeros`, `kadnesAlgo`, `nextPermutation` in `Arrays/`. Week 1 Day 1 starts *after* those.
@@ -13,9 +13,9 @@ Pattern tags in `code` — see [patterns.md](../patterns.md). Problems are from 
 |---|---|
 | **Mon** | **DSA:** Longest subarray with sum K, positives `window-variable` → then with negatives `prefix-sum-hashmap` *(same problem, different pattern once negatives appear — this is the single best lesson in the sheet)* · Two Sum `hashing` · Sort 0s/1s/2s `dutch-flag`<br>**JS:** execution context, hoisting, TDZ, `var`/`let`/`const` — write examples that prove each<br>**Rev:** Kadane's cold `kadane` |
 | **Tue** | **MC:** counter + star rating component (plain React, no libs)<br>**DSA:** Majority element n/2 `hashing` → Moore's voting · Majority element n/3 `hashing`<br>**BE:** Node + Express setup, folder structure, first REST endpoints |
-| **Wed** | **DSA:** Maximum subarray, print the subarray `kadane` · Stock buy/sell I `kadane` *(running min, same skeleton)* · Rearrange by sign `two-pointers-same-dir`<br>**JS:** scope chain, lexical scope, closures — counter factory, `once()`, private state<br>**Rev:** Next Permutation cold |
+| **Wed** | **DSA:** Maximum subarray, print the subarray `kadane` · Stock buy/sell I `kadane` *(running min, same skeleton)* · Rearrange by sign `two-pointers-same-dir`<br>**JS:** scope chain, lexical scope, closures — counter factory, `once()`, private state, closures in loops, IIFE / module pattern<br>**Rev:** Next Permutation cold |
 | **Thu** | **MC:** accordion (single + multi open, keyboard accessible)<br>**DSA:** Leaders in array `sorting-then-scan` *(suffix max, right to left)* · Longest consecutive sequence `hashing`<br>**BE:** REST design — resources, verbs, status codes, versioning |
-| **Fri** | **DSA:** Rotate matrix 90° `matrix-simulation` · Spiral traversal `matrix-simulation` · Count subarrays with sum K `prefix-sum-hashmap`<br>**JS:** closures in loops, IIFE, module pattern, memory implications<br>**Rev:** Set Matrix Zeros cold `matrix-simulation` |
+| **Fri** | **DSA:** Rotate matrix 90° `matrix-simulation` · Spiral traversal `matrix-simulation` · Count subarrays with sum K `prefix-sum-hashmap`<br>**DOM:** events — capture vs bubble, delegation, `preventDefault` vs `stopPropagation`. Build a clickable list with one delegated listener, no framework<br>**Rev:** Set Matrix Zeros cold `matrix-simulation` |
 | **Wknd** | *(if available)* 4h: finish unfinished MC builds, refactor properly, push |
 
 ## Week 2 — Arrays: medium → hard
@@ -34,11 +34,11 @@ Pattern tags in `code` — see [patterns.md](../patterns.md). Problems are from 
 | Day | Plan |
 |---|---|
 | **Mon** | **DSA:** BS template, get the invariant right `bs-index` · lower/upper bound `bs-bounds` · first & last occurrence `bs-bounds`<br>**JS:** the event loop — call stack, task queue, microtask queue; predict output of 6 tricky snippets<br>**Rev:** Count inversions `merge-sort-variant` |
-| **Tue** | **MC:** tabs — keyboard nav, ARIA roles, lazy panel content<br>**DSA:** Search in rotated sorted array I & II `bs-rotated` *(II breaks on duplicates — know why)*<br>**BE:** Postgres — schema design, normalization, the joins you'll actually use |
-| **Wed** | **DSA:** Min in rotated array `bs-rotated` · Single element in sorted array `bs-index` · Peak element `bs-index`<br>**JS:** promises — chaining, error propagation, `finally`, common footguns<br>**Rev:** lower/upper bound from scratch `bs-bounds` |
+| **Tue** | **MC:** tabs in **vanilla JS, no React** — keyboard nav, ARIA roles, lazy panel content, one delegated listener<br>**DSA:** Search in rotated sorted array I & II `bs-rotated` *(II breaks on duplicates — know why)*<br>**BE:** Postgres — schema design, normalization, the joins you'll actually use |
+| **Wed** | **DSA:** Min in rotated array `bs-rotated` · Single element in sorted array `bs-index` · Peak element `bs-index`<br>**JS:** promises — chaining, error propagation, `finally`, common footguns · async/await, sequential vs parallel<br>**Rev:** lower/upper bound from scratch `bs-bounds` |
 | **Thu** | **MC:** modal + tooltip — portals, focus trap, escape, click-outside<br>**DSA:** Kth element of two sorted arrays `bs-partition`<br>**BE:** indexes — what they cost, when they help, EXPLAIN on your own queries |
-| **Fri** | **DSA:** Median of two sorted arrays `bs-partition` · Search 2D matrix I `bs-2d` *(flatten)* · II `bs-2d` *(corner walk)*<br>**JS:** async/await vs promises, sequential vs parallel, error handling<br>**Rev:** Search in rotated array II `bs-rotated` |
-| **Wknd** | *(if available)* 4h: rebuild the autocomplete from scratch, timed — first taste of interview pressure |
+| **Fri** | **DSA:** Median of two sorted arrays `bs-partition` · Search 2D matrix I `bs-2d` *(flatten)* · II `bs-2d` *(corner walk)*<br>**CSS I:** box model, cascade + specificity, positioning, stacking context, BFC — predict the result of 6 tricky snippets<br>**Rev:** Search in rotated array II `bs-rotated` |
+| **Wknd** | *(if available)* 4h: rebuild the todo app from scratch, timed 90 min — first taste of interview pressure |
 
 ## Week 4 — Binary search on the answer
 
@@ -60,4 +60,5 @@ Pattern tags in `code` — see [patterns.md](../patterns.md). Problems are from 
 - [ ] You can state the `bs-on-answer` trigger without looking, and recognise that Book allocation / Split array / Painter's partition are one problem
 - [ ] Polyfill set I written from memory in under 45 min
 - [ ] Express + Postgres API with working JWT auth
-- [ ] 5 machine coding components built and refactored
+- [ ] 5 machine coding components built and refactored — tabs without React
+- [ ] Can explain event delegation, specificity and stacking context out loud

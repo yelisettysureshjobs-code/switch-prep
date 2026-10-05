@@ -23,7 +23,7 @@
 |---|---|
 | 2.0 hr | Machine coding, timed |
 | 1.0 hr | DSA — 1–2 problems |
-| 1.0 hr | System design / backend |
+| 1.0 hr | System design / backend — on Thursdays in W11–16 this slot is LLD |
 
 **Weekend (the ~1 day in 2 you get)** — one unbroken 4-hr block. Mock interview, or project integration. Never problem-grinding; that fits in weekday slices.
 
@@ -44,10 +44,10 @@
 
 Cut deliberately, not by accident:
 
-- Advanced DP (digit DP, bitmask DP), tries, segment trees, Fenwick, MST, SCC
+- Advanced DP (digit DP, bitmask DP), segment trees, Fenwick, MST, SCC, and tries beyond the two basics in W11–12
 - Striver A2Z's advanced-maths and string-algorithm sections (KMP, Z-function, Rabin-Karp)
 - GraphQL, microservices, ORM comparisons
-- OS / DBMS / Networks — **exception:** if MakeMyTrip is a serious target, add the Week 19 skim
+- OS beyond a one-day skim. DBMS and networks are **in** — Week 19, not optional for full-stack loops
 - Three portfolio projects. You are building **one**.
 
 ---
@@ -65,7 +65,7 @@ If you'd rather work from a smaller list: Striver's **SDE sheet (~191)** covers 
 
 ## How to actually study
 
-**[how-to-study.md](how-to-study.md)** — the method for each track, because they're different. DSA: learn the pattern, then struggle, with a 25-minute rule. Machine coding: code-first against a known rubric and a 90-minute budget. System design: learn-first with the RADIO framework, answered out loud. Read this before Week 1.
+**[how-to-study.md](how-to-study.md)** — the method for each track, because they're different. DSA: learn the pattern, then struggle, with a 25-minute rule. Machine coding: code-first against a known rubric and a 90-minute budget. System design: learn-first with the RADIO framework, answered out loud — plus a separate skeleton for backend HLD. LLD: entities first, one core flow in code, 60 minutes. Read this before Week 1.
 
 ## Patterns, not problems
 
@@ -77,41 +77,41 @@ You are not memorising 200 problems. You are learning 35 patterns and training y
 
 ### Month 1 — Arrays & Binary Search · [day-wise](daily/month-01.md)
 
-- [ ] **W1** — Arrays easy+medium (~12) · JS: execution context, scope, closures · Backend: Node + Express setup, REST basics · MC: counter, star rating, accordion
+- [ ] **W1** — Arrays easy+medium (~12) · JS: execution context, scope, closures · DOM: events + delegation · Backend: Node + Express setup, REST basics · MC: counter, star rating, accordion
 - [ ] **W2** — Arrays medium+hard, Kadane/Dutch flag/intervals (~12) · JS: `this`, call/apply/bind, prototypes · Backend: Express routing, middleware, error handling · MC: todo with filters + localStorage
-- [ ] **W3** — Binary search on arrays (~12) · JS: event loop, micro/macrotask, promises · Backend: Postgres — schema, joins, indexes · MC: tabs, modal, tooltip (a11y-correct)
+- [ ] **W3** — Binary search on arrays (~12) · JS: event loop, micro/macrotask, promises + async/await · CSS I: box model, cascade, positioning, stacking · Backend: Postgres — schema, joins, indexes · MC: tabs in **vanilla JS**, modal, tooltip (a11y-correct)
 - [ ] **W4** — Binary search on answers + 2D (~12) · JS: polyfills I — map/filter/reduce, call/apply/bind, debounce, throttle · Backend: auth with JWT, bcrypt, refresh tokens · MC: autocomplete — debounce, cancel, keyboard nav
 - [ ] **Milestone:** ~48 problems · polyfill set I written from memory · a running Express+Postgres API with auth
 
 ### Month 2 — Strings, Linked List, Recursion, Stacks · [day-wise](daily/month-02.md)
 
 - [ ] **W5** — Strings (~12) · JS: polyfills II — Promise.all/race/allSettled/any, deep clone, EventEmitter, curry, memoize · SD: rendering strategies CSR/SSR/SSG/ISR · MC: infinite scroll + intersection observer
-- [ ] **W6** — Linked list + doubly LL (~12) · React: reconciliation, keys, render cycle, StrictMode · SD: browser rendering pipeline, CRP, reflow/repaint · MC: virtualized list (windowing, from scratch)
-- [ ] **W7** — Recursion + backtracking (~12) · React: hooks deep — useEffect timing/cleanup, useRef, custom hooks · SD: HTTP caching, CORS, cookies · MC: nested comments (recursive render)
+- [ ] **W6** — Linked list + doubly LL (~12) · React: reconciliation, keys, render cycle, StrictMode · CSS II: flexbox, grid, responsive · SD: browser rendering pipeline, CRP, reflow/repaint · MC: virtualized list (windowing, from scratch)
+- [ ] **W7** — Recursion + backtracking (~12) · React: hooks deep — useEffect timing/cleanup, useRef, custom hooks · HTML: semantics, forms, script loading · SD: HTTP caching, CORS, cookies · MC: nested comments (recursive render)
 - [ ] **W8** — Stacks, queues, monotonic stack (~12) · React: state — Context, Redux Toolkit, Zustand, server state · SD: XSS, CSRF, CSP, auth on the frontend · MC: kanban board with drag-drop
 - [ ] **Milestone:** ~96 problems · all polyfills cold · React model articulate out loud
 
 ### Month 3 — Trees, Heaps, Greedy, Sliding Window · **project starts** · [day-wise](daily/month-03.md)
 
-- [ ] **W9** — Binary trees: traversals, views, LCA (~12) · React: perf — memo, lazy, Suspense, Profiler · SD: **design an autocomplete** · **Project:** scaffold Vite+TS+React, routing, design tokens
-- [ ] **W10** — BST + tree hard (~12) · React: forms, error boundaries, portals · SD: **design a product listing page at scale** · **Project:** product grid + virtualized list (reuse W6)
-- [ ] **W11** — Heaps **+ Greedy**, merged (~14) · TypeScript in React · SD: **design an image-heavy feed** · **Project:** filters, sort, URL-synced state
-- [ ] **W12** — **Sliding window, two pointers, bit manipulation** (~14) · Testing: RTL, Jest, MSW · SD: **design a component library** · **Project:** cart + optimistic UI with rollback
-- [ ] **Milestone:** ~144 problems · the `window-variable` template from memory · project running on your own API
+- [ ] **W9** — Binary trees: traversals, views, LCA (~12) · React: perf — memo, useMemo/useCallback, lazy, Suspense, Profiler · SD: **design an autocomplete** · **Project:** scaffold Vite+TS+React, routing, design tokens · **BE:** tested products API
+- [ ] **W10** — BST + tree hard (~12) · React: forms, error boundaries, portals · SD: **design a product listing page at scale** · **Project:** product grid + virtualized list (reuse W6) · **BE:** Redis cache on the products API
+- [ ] **W11** — Heaps **+ Greedy**, merged, + Implement Trie (~15) · TypeScript in React · SD: **design an image-heavy feed** · **LLD:** the method + parking lot · **Project:** filters, sort, URL-synced state · **BE:** indexed filter queries
+- [ ] **W12** — **Sliding window, two pointers, bit manipulation**, + one more trie (~15) · Testing: RTL, Jest, MSW · SD: **design a component library** · **LLD:** Splitwise · **Project:** cart + optimistic UI with rollback · **BE:** versioned cart API
+- [ ] **Milestone:** ~146 problems · the `window-variable` template from memory · project running on your own API · 2 LLD problems coded
 
 ### Month 4 — Graphs & DP · [day-wise](daily/month-04.md)
 
-- [ ] **W13** — Graphs I: BFS, DFS, cycle detection, grid problems (~12) · Build tooling: Vite/Webpack, code splitting, tree shaking · SD: **design a chat app (frontend)** — WebSocket, ordering, reconnect · **Project:** WebSocket order tracking
-- [ ] **W14** — Graphs II: topo sort, Dijkstra, shortest paths (~12) · Core Web Vitals — LCP, INP, CLS and the fix for each · SD: **caching strategies** — HTTP, SW, in-memory, stale-while-revalidate · **Project:** offline cart with IndexedDB + sync on reconnect
-- [ ] **W15** — DP I: 1D, 2D grid, subsequences (~12) · Bundle analysis + a real perf pass · SD: **design a checkout flow** — idempotency, failure states · **Project:** checkout + error/edge states
-- [ ] **W16** — DP II: knapsack, LIS, stocks, partition (~12) · Accessibility: keyboard, ARIA, screen reader pass · SD: **HLD basics** — LB, cache, DB scaling, CDN, queues · **Project:** perf pass — Lighthouse before/after, measured
-- [ ] **Milestone:** ~192 problems · project deployed · **perf numbers written down**
+- [ ] **W13** — Graphs I: BFS, DFS, cycle detection, grid problems (~12) · Build tooling: Vite/Webpack, code splitting, tree shaking · SD: **design a chat app (frontend)** — WebSocket, ordering, reconnect · **LLD:** snake & ladder · **Project:** WebSocket order tracking · **BE:** queue + worker feeding it
+- [ ] **W14** — Graphs II: topo sort, Dijkstra, shortest paths (~12) · Core Web Vitals — LCP, INP, CLS and the fix for each · SD: **caching strategies** — HTTP, SW, in-memory, stale-while-revalidate · **LLD:** in-memory cache with pluggable eviction · **Project:** offline cart with IndexedDB + sync on reconnect · **BE:** idempotent sync endpoint
+- [ ] **W15** — DP I: 1D, 2D grid, subsequences (~12) · Bundle analysis + a real perf pass · SD: **design a checkout flow** — idempotency, failure states · **LLD:** movie seat booking · **Project:** checkout + error/edge states · **BE:** checkout in one transaction, last-item race
+- [ ] **W16** — DP II: knapsack, LIS, stocks, partition (~12) · Accessibility: keyboard, ARIA, screen reader pass · SD: **HLD basics** — LB, cache, DB scaling, CDN, queues · **LLD:** rate limiter · **Project:** perf pass — Lighthouse before/after, measured · **BE:** Docker Compose
+- [ ] **Milestone:** ~194 problems · project deployed · **perf numbers written down** · 6 LLD problems coded
 
 ### Month 5 — Design, Polish, First Applications · [day-wise](daily/month-05.md)
 
 - [ ] **W17** — Resume rewrite (action → metric → tech) · project README as a design doc · LinkedIn/GitHub cleanup · **start applying: mid-tier, 15/week** · DSA: revision only
-- [ ] **W18** — FE system design drills, 1/day out loud, timed · behavioural stories in STAR (5 of them) · mine your day job for ownership numbers
-- [ ] **W19** — CS fundamentals skim *(only if MakeMyTrip/Amazon-shaped targets)* — OS, DBMS, networks · otherwise: more machine coding under time
+- [ ] **W18** — System design drills, 1/day out loud, timed — alternating frontend and backend HLD · behavioural stories in STAR (5 of them) · mine your day job for ownership numbers
+- [ ] **W19** — CS fundamentals — DBMS (3 days, incl. SQL by hand), networks, one-day OS skim · backend HLD drills: URL shortener, rate limiter
 - [ ] **W20** — Weak-pattern revision from `notes.md` · 2 full mock loops · first real interviews landing
 - [ ] **Milestone:** applying actively · resume converting · ~200 problems, all revised at least twice
 
