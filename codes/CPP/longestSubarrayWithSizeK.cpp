@@ -3,61 +3,64 @@
 #include <algorithm>
 using namespace std;
 
-
-void withoutNegativeOrZeros(){
+void withoutNegativeOrZeros()
+{
     int n, k;
     cin >> n >> k;
     vector<int> arr(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         cin >> arr[i];
     }
 
     int s = 0, ans = 0, maxl = -1;
 
-    for (int e = 0; e < n; e++) {
+    for (int e = 0; e < n; e++)
+    {
         ans += arr[e];
 
-        while (ans > k && s <= e) {
+        while (ans > k && s <= e)
+        {
             ans -= arr[s];
             s++;
         }
 
-        if (ans == k) {
+        if (ans == k)
+        {
             maxl = max(maxl, e - s + 1);
         }
     }
 
     cout << maxl << endl;
-
 }
-void withNegativeOrZeros(){
+void withNegativeOrZeros()
+{
 
     int n, k;
     cin >> n >> k;
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
     }
 
-    unordered_map<int,int>om;
-    int maxl = 0,s=0;
-
-    for(int i=0;i<n;i++){
-        s+=arr[i];
-        if(s==k){
-            maxl=max(maxl,i+1);
+    unordered_map<int, int> o;
+    o[0] = -1; // initilize with -1 to handle 0 sum case , n=4 ,k=5 ,v=[ 1 2 -1 3 ] ans = 4
+    int sum = 0, maxL = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum += v[i];
+        if (o.find(sum - k) != o.end())
+        {
+            maxL = max(maxL, i - o[sum - k]);
         }
-        int rem=s-k;
-        if(om.find(rem)!=om.end()){
-            maxl=max(maxl,i-om[rem]);
-        }
-        if(om.find(s)==om.end()){
-            om[s]=i;
+        if (o.find(sum) == o.end()) // if sum is not present in the map then only add it to the map to keep the first occurence
+        {
+            o[sum] = i;
         }
     }
 
-    cout << maxl << endl;
-
+    cout << maxL << endl;
 }
 
 int main()
@@ -68,5 +71,4 @@ int main()
     withNegativeOrZeros();
 
     return 0;
-
 }

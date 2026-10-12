@@ -167,7 +167,7 @@ Recalled from memory — verify they still exist and match before committing tim
 
 | Track | Resource |
 |---|---|
-| DSA | Striver's A2Z on takeuforward.org — videos + articles per topic; this plan follows its ordering |
+| DSA | [Striver's 180 – Master DSA Patterns](https://takeuforward.org/prep-hub/strivers-180-master-dsa-patterns?page=sheet) on takeuforward.org — video + article per problem; this plan follows its ordering and pattern names |
 | Machine coding | frontendeval.com (free prompts) · GreatFrontEnd · Chirag Goel on YouTube for worked rounds |
 | Frontend system design | GreatFrontEnd's system design section (source of RADIO) · Akshay Saini's Namaste Frontend System Design (paid, structured) |
 | Backend HLD | ByteByteGo / Alex Xu — the classic problems, one level deep; the round checks structure and tradeoffs |

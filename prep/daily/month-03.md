@@ -1,4 +1,4 @@
-# Month 3 — Trees, Heaps, Greedy, Sliding Window · Project Starts (Weeks 9–12)
+# Month 3 — Trees & Graphs · Project Starts (Weeks 9–12)
 
 From here the Tue/Thu machine-coding block **is** the project. No more orphan widgets.
 
@@ -8,7 +8,7 @@ From here the Tue/Thu machine-coding block **is** the project. No more orphan wi
 
 **LLD starts Week 11.** The Thursday SD slot becomes one low-level design problem a week through Week 16 — method in [how-to-study.md](../how-to-study.md).
 
-Pattern tags in `code` — see [patterns.md](../patterns.md).
+Sheet: **[Striver's 180 – Master DSA Patterns](https://takeuforward.org/prep-hub/strivers-180-master-dsa-patterns?page=sheet)**, taken in sheet order — sections **Binary Trees → Graphs (Shortest Path)** this month. The tag in `code` beside each problem is the pattern name the sheet gives it; [patterns.md](../patterns.md) maps each one to its trigger.
 
 ---
 
@@ -16,57 +16,213 @@ Pattern tags in `code` — see [patterns.md](../patterns.md).
 
 > **RADIO gets learned this week, Tuesday, in 30 minutes** — then applied to every design question from here to Month 5. Don't spend longer on the framework itself; it's five buckets. The difficulty is what fills them, and that only comes from the eight design questions in Weeks 9–16.
 
-| Day | Plan |
-|---|---|
-| **Mon** | **DSA:** All 3 traversals, recursive + iterative `dfs-recursive` · Level order `bfs-level` · Zigzag `bfs-level`<br>**React:** perf — `React.memo`, `lazy`, `Suspense`, Profiler on your own MC builds<br>**Rev:** LRU cache `hashmap-dll` |
-| **Tue** | **Project:** scaffold — Vite + React + TS, routing, design tokens, layout shell<br>**DSA:** Height `dfs-recursive` · Balanced tree check `dfs-bottom-up` *(return height AND validity — the whole point of bottom-up)*<br>**SD (first half, 30 min):** learn **RADIO** — Requirements → Architecture → Data model → Interface → Optimizations (see [how-to-study.md](../how-to-study.md)). Write it on a card and keep it visible for every design answer from here on.<br>**SD (second half, 30 min):** **design an autocomplete** — your first attempt, out loud, RADIO in order. It will be bad. That's the point — Thursday is where it gets fixed. |
-| **Wed** | **DSA:** Diameter `dfs-bottom-up` · Max path sum `dfs-bottom-up` *(return best-downward, record best-through — the key distinction)* · Identical trees `dfs-recursive`<br>**React:** `useMemo` / `useCallback` — when they help, why memo usually does nothing, and how to find the render actually costing you<br>**Rev:** Level order traversal `bfs-level` |
-| **Thu** | **Project:** API — products endpoint with pagination + filtering, seeded 10k rows · **BE:** integration tests for it (supertest against a test database)<br>**DSA:** Boundary traversal `path-tracking` · Top view `bfs-level` *(BFS + horizontal distance map)*<br>**SD:** critique Tuesday's autocomplete answer against a reference. Score yourself per RADIO bucket — **which letter did you skip?** Almost everyone skips R and jumps to A. Write the gap down; it's the same gap next time. |
-| **Fri** | **DSA:** Bottom view `bfs-level` · Right/left view `bfs-level` · Symmetric tree `dfs-recursive`<br>**React:** code splitting by route, `Suspense` boundaries, loading UX<br>**Rev:** Diameter `dfs-bottom-up` |
-| **Wknd** | *(if available)* 4h: project integration — grid rendering real API data end to end |
+### Mon
 
-## Week 10 — BST + Tree Hard
+- **DSA:**
+  - *warm-up, 15 min:* the three DFS traversals, recursive — the sheet assumes them
+  - Level Order Traversal `BFS / Level Order`
+  - Right/Left View of BT `BFS / Level Order`
+  - Top View of BT `BFS / Level Order` *(BFS + horizontal-distance map)*
+- **React:** perf — `React.memo`, `lazy`, `Suspense`, Profiler on your own MC builds
+- **Rev:** LRU Cache `Simulation / Implementation`
 
-| Day | Plan |
-|---|---|
-| **Mon** | **DSA:** Search/insert/delete in BST `bst-property` · Validate BST `bst-property` *(pass min/max bounds down)* · Kth smallest `bst-property` *(inorder is sorted)*<br>**React:** forms — controlled inputs at scale, validation, react-hook-form patterns<br>**Rev:** Max path sum `dfs-bottom-up` |
-| **Tue** | **Project:** product grid + drop in your virtualized list from Week 6<br>**DSA:** LCA in BST `bst-property` · Inorder successor `bst-property`<br>**SD:** **design a product listing page at scale** — pagination vs infinite, filters, SEO, images |
-| **Wed** | **DSA:** Root-to-node path `path-tracking` · LCA in binary tree `dfs-bottom-up` · Max width `bfs-level` *(index the nodes)*<br>**React:** error boundaries, portals, suspense fallbacks, graceful degradation<br>**Rev:** Validate BST `bst-property` |
-| **Thu** | **Project:** skeleton, empty and error states — all of them, properly · **BE:** Redis cache-aside on the products endpoint — TTL, invalidate on write, measure the hit<br>**DSA:** Nodes at distance K `tree-to-graph` · Time to burn tree `tree-to-graph` *(same trick: parent pointers, then BFS)*<br>**SD:** SEO for SPAs — meta, structured data, why SSR matters commercially |
-| **Fri** | **DSA:** Count nodes in complete tree `bst-property` · Construct tree from traversals `tree-construction` · Serialize/deserialize `bfs-level`<br>**React:** compound components, render props, headless patterns<br>**Rev:** LCA in binary tree `dfs-bottom-up` |
-| **Wknd** | *(if available)* 4h: mock interview #2 — machine coding round, strict 90 min |
+### Tue
 
-## Week 11 — Heaps + Greedy
+- **Project:** scaffold — Vite + React + TS, routing, design tokens, layout shell
+- **DSA:**
+  - Maximum Width of BT `BFS / Level Order` *(index the nodes like a heap)*
+  - Vertical Order Traversal `BFS / Level Order`
+- **SD (first half, 30 min):** learn **RADIO** — Requirements → Architecture → Data model → Interface → Optimizations (see [how-to-study.md](../how-to-study.md)). Write it on a card and keep it visible for every design answer from here on.
+- **SD (second half, 30 min):** **design an autocomplete** — your first attempt, out loud, RADIO in order. It will be bad. That's the point — Thursday is where it gets fixed.
 
-> Merged deliberately: both are small topics and they overlap — half of "greedy" is really *greedy plus a heap*.
+### Wed
 
-| Day | Plan |
-|---|---|
-| **Mon** | **DSA:** Implement min/max heap + heapify `greedy-heap` · Kth largest element `top-k-heap` *(size-K heap, not a sort)* · K most frequent `top-k-heap` + `freq-map`<br>**TS:** generics, discriminated unions, typing props and hooks properly<br>**Rev:** Construct tree from traversals `tree-construction` |
-| **Tue** | **Project:** filters + sort, state synced to URL, shareable links · **BE:** the filter and sort queries hit indexes — prove it with EXPLAIN<br>**DSA:** Merge K sorted lists `k-way-merge` · Task scheduler `greedy-heap`<br>**SD:** **design an image-heavy feed** — CDN, srcset, lazy load, LQIP, layout stability · last 15 min: critique it against a reference, write the tradeoffs down |
-| **Wed** | **DSA:** Median from data stream `two-heaps` · Fractional knapsack `sort-then-greedy` *(sort by value/weight ratio)* · N meetings in a room `interval-scheduling` · Implement Trie — insert / search / startsWith `trie`<br>**TS:** utility types, `satisfies`, narrowing, typing your API layer<br>**Rev:** Kth largest element `top-k-heap` |
-| **Thu** | **Project:** image pipeline — responsive images, lazy loading, zero CLS<br>**DSA:** Job sequencing `sort-then-greedy` · Non-overlapping intervals `interval-scheduling` *(sort by **end**, not start — this is the whole trick)*<br>**LLD:** learn the method (30 min — [how-to-study.md](../how-to-study.md)), then **parking lot** with a reference open. Entities and interfaces first, code second |
-| **Fri** | **DSA:** Candy `sort-then-greedy` *(two passes, left then right)* · Jump game I & II `sort-then-greedy` · Gas station `sort-then-greedy`<br>**TS:** convert one earlier MC build fully to TS, no `any`<br>**Rev:** Merge K sorted lists `k-way-merge` |
-| **Wknd** | *(if available)* 4h: project — search across products, wired to the autocomplete you already built |
+- **DSA:**
+  - Print root to leaf path in BT `Tree DFS / Recursive Decomposition` *(carry the path down, pop on the way back)*
+  - Diameter of Binary Tree `Tree DFS / Recursive Decomposition` *(return height, record best-through — one pass)*
+  - LCA in BT `Tree DFS / Recursive Decomposition`
+- **React:** `useMemo` / `useCallback` — when they help, why memo usually does nothing, and how to find the render actually costing you
+- **Rev:** Top View of BT `BFS / Level Order`
 
-## Week 12 — Sliding Window, Two Pointers, Bit Manipulation
+### Thu
 
-> The week I nearly left out. `window-variable` is asked constantly at 2 YOE and it's one template: **expand right, shrink left while the window is invalid, record the answer.** Write that template once and 10 of these collapse into it.
+- **Project:** API — products endpoint with pagination + filtering, seeded 10k rows
+- **BE:** integration tests for it (supertest against a test database)
+- **DSA:**
+  - Print all nodes at a distance of K in BT `Tree DFS / Recursive Decomposition`
+  - Minimum time taken to burn the BT from a given Node `Tree DFS / Recursive Decomposition` *(same trick for both: parent pointers, then it's a BFS)*
+- **SD:** critique Tuesday's autocomplete answer against a reference. Score yourself per RADIO bucket — **which letter did you skip?** Almost everyone skips R and jumps to A. Write the gap down; it's the same gap next time.
 
-| Day | Plan |
-|---|---|
-| **Mon** | **DSA:** Max sum subarray of size K `window-fixed` · Longest substring without repeating characters `window-hashmap` · Longest with at most K distinct `window-hashmap` · Longest word with all prefixes `trie` *(last week's trie again — this is what an autocomplete index is)*<br>**Testing:** RTL basics — query priorities, user-event, testing behaviour not implementation<br>**Rev:** Median from data stream `two-heaps` |
-| **Tue** | **Project:** cart — add/remove/quantity, **optimistic UI with rollback on failure**<br>**DSA:** Fruit into baskets `window-hashmap` *(it's "at most 2 distinct" in a costume)* · Longest repeating character replacement `window-hashmap`<br>**SD:** **design a component library** — theming, tokens, a11y contract, versioning |
-| **Wed** | **DSA:** Binary subarrays with sum `window-variable` · Count nice subarrays `window-variable` · Number of substrings containing all three characters `window-variable`<br>**Testing:** MSW for API mocking, testing async UI, testing custom hooks<br>**Rev:** Longest substring without repeating `window-hashmap` |
-| **Thu** | **Project:** cart persistence + server sync, conflict handling · **BE:** cart endpoints with a version column — reject stale writes with 409<br>**DSA:** Max points from cards `window-fixed` *(fixed window on the complement)* · Sliding window maximum `window-deque`<br>**LLD:** **Splitwise** — users, groups, expenses, split strategies (equal / exact / percent), simplify debts |
-| **Fri** | **DSA:** Minimum window substring `window-hashmap` *(the hard one — worth a full hour)* · Single number I / II / III `xor-trick` · Count set bits, power of two `bit-basics` · Subsets via bitmask `bitmask-subsets`<br>**Testing:** write tests for the cart's optimistic path **and** its rollback path<br>**Rev:** Sliding window maximum `window-deque` |
-| **Wknd** | *(if available)* 4h: **Month 3 audit** — 8 cold re-solves + deploy the project publicly for the first time |
+### Fri
+
+- **DSA:**
+  - Boundary Traversal `Tree DFS / Recursive Decomposition`
+  - Construct a BT from Preorder and Inorder `Tree DFS / Recursive Decomposition` *(preorder gives the root, inorder gives the split)*
+  - Maximum path sum `Tree DFS / Recursive Decomposition` *(return best-downward, record best-through — the key distinction)*
+- **React:** code splitting by route, `Suspense` boundaries, loading UX
+- **Rev:** Diameter of Binary Tree `Tree DFS / Recursive Decomposition`
+
+### Wknd
+
+- *(if available)* 4h: project integration — grid rendering real API data end to end
+
+## Week 10 — Tree Hard + BST
+
+### Mon
+
+- **DSA:**
+  - Morris Inorder Traversal `Tree DFS / Recursive Decomposition` *(threaded tree — O(1) space)*
+  - Serialize and De-serialize BT `Tree DFS / Recursive Decomposition`
+  - Insert a given node in BST `Lower Bound / Upper Bound`
+- **React:** forms — controlled inputs at scale, validation, react-hook-form patterns
+- **Rev:** Maximum path sum `Tree DFS / Recursive Decomposition`
+
+### Tue
+
+- **Project:** product grid + drop in your virtualized list from Week 6
+- **DSA:**
+  - Delete a node in BST `Lower Bound / Upper Bound` *(three cases — the two-children one is the question)*
+  - LCA in BST `Tree DFS / Recursive Decomposition` *(the split point)*
+- **SD:** **design a product listing page at scale** — pagination vs infinite, filters, SEO, images
+
+### Wed
+
+- **DSA:**
+  - Check if a tree is a BST or not `Tree DFS / Recursive Decomposition` *(pass min / max bounds down)*
+  - Kth Smallest and Largest element in BST `Tree DFS / Recursive Decomposition` *(inorder is sorted)*
+  - Inorder successor and predecessor in BST `Lower Bound / Upper Bound`
+- **React:** error boundaries, portals, suspense fallbacks, graceful degradation
+- **Rev:** LCA in BT `Tree DFS / Recursive Decomposition`
+
+### Thu
+
+- **Project:** skeleton, empty and error states — all of them, properly
+- **BE:** Redis cache-aside on the products endpoint — TTL, invalidate on write, measure the hit
+- **DSA:**
+  - Construct a BST from a preorder traversal `Tree DFS / Recursive Decomposition` *(carry an upper bound — O(n))*
+  - Two sum in BST `Two Pointer` *(two BST iterators: `next` and `before`)*
+- **SD:** SEO for SPAs — meta, structured data, why SSR matters commercially
+
+### Fri
+
+- **DSA:**
+  - Correct BST with two nodes swapped `Tree DFS / Recursive Decomposition` *(inorder: find the one or two inversions)*
+  - Largest BST in Binary Tree `Tree DFS / Recursive Decomposition` *(return size, min and max upward)*
+- **React:** compound components, render props, headless patterns
+- **Rev:** Construct a BT from Preorder and Inorder `Tree DFS / Recursive Decomposition`
+
+### Wknd
+
+- *(if available)* 4h: mock interview #2 — machine coding round, strict 90 min
+
+## Week 11 — Graphs I: traversal & topological order
+
+> The sheet assumes you can already write BFS and DFS over an adjacency list. If you can't do both from memory in 10 minutes, do that first on Monday — everything in the next two weeks is one of those two skeletons with a twist.
+
+### Mon
+
+- **DSA:**
+  - Flood fill algorithm `Graph DFS / Connected Components`
+  - Number of islands `Graph DFS / Connected Components`
+  - Rotten Oranges `BFS / Level Order` *(multi-source — push every source before the loop starts; that's the entire pattern)*
+- **TS:** generics, discriminated unions, typing props and hooks properly
+- **Rev:** Check if a tree is a BST or not `Tree DFS / Recursive Decomposition`
+
+### Tue
+
+- **Project:** filters + sort, state synced to URL, shareable links
+- **BE:** the filter and sort queries hit indexes — prove it with EXPLAIN
+- **DSA:**
+  - Distance of nearest cell having one `BFS / Level Order` *(multi-source again)*
+  - Surrounded Regions `Graph DFS / Connected Components` *(invert: start from the boundary)*
+- **SD:**
+  - **design an image-heavy feed** — CDN, srcset, lazy load, LQIP, layout stability
+  - last 15 min: critique it against a reference, write the tradeoffs down
+
+### Wed
+
+- **DSA:**
+  - Number of distinct islands `Graph DFS / Connected Components` *(store each island's shape relative to its start cell)*
+  - Detect a cycle in an undirected graph `Graph DFS / Connected Components` *(a visited neighbour that isn't the parent)*
+  - Bipartite graph `Graph DFS / Connected Components` *(two-colouring)*
+- **TS:** utility types, `satisfies`, narrowing, typing your API layer
+- **Rev:** Rotten Oranges `BFS / Level Order`
+
+### Thu
+
+- **Project:** image pipeline — responsive images, lazy loading, zero CLS
+- **DSA:**
+  - Detect a cycle in a directed graph `Topological Ordering` *(recursion stack, not just visited — or Kahn's leaves nodes unprocessed)*
+  - Topological sort or Kahn's algorithm `Topological Ordering`
+- **LLD:** learn the method (30 min — [how-to-study.md](../how-to-study.md)), then **parking lot** with a reference open. Entities and interfaces first, code second
+
+### Fri
+
+- **DSA:**
+  - Course Schedule II `Topological Ordering`
+  - Alien Dictionary `Topological Ordering` *(the first differing letter of two adjacent words is an edge)*
+- **TS:** convert one earlier MC build fully to TS, no `any`
+- **Rev:** Number of islands `Graph DFS / Connected Components`
+
+### Wknd
+
+- *(if available)* 4h: project — search across products, wired to the autocomplete you already built
+
+## Week 12 — Graphs II: shortest paths, SCC & bridges
+
+> One question picks the algorithm: **what do the edge weights look like?** Unit weights → BFS. DAG → relax in topo order. Non-negative → Dijkstra. Negative edges or "at most K edges" → Bellman-Ford. All pairs → Floyd-Warshall. Friday is the hard tail of the section — Kosaraju, bridges, articulation points.
+
+### Mon
+
+- **DSA:**
+  - Shortest path in undirected graph with unit weights `Shortest Path`
+  - Shortest path in DAG `Shortest Path` *(relax in topological order)*
+  - Dijkstra's algorithm `Shortest Path` + `Priority Queue` *(and know why plain BFS breaks on weights)*
+- **Testing:** RTL basics — query priorities, user-event, testing behaviour not implementation
+- **Rev:** Topological sort or Kahn's algorithm `Topological Ordering`
+
+### Tue
+
+- **Project:** cart — add/remove/quantity, **optimistic UI with rollback on failure**
+- **DSA:**
+  - Path with minimum effort `Shortest Path` *(Dijkstra where the path cost is a max, not a sum)*
+  - Cheapest flight within K stops `Shortest Path` *(Dijkstra by cost fails here — understand exactly why)*
+- **SD:** **design a component library** — theming, tokens, a11y contract, versioning
+
+### Wed
+
+- **DSA:**
+  - Bellman ford algorithm `Shortest Path`
+  - Floyd warshall algorithm `Shortest Path`
+  - Word ladder I `BFS / Level Order` *(the graph is implicit — neighbours are one-letter edits)*
+- **Testing:** MSW for API mocking, testing async UI, testing custom hooks
+- **Rev:** Dijkstra's algorithm from scratch `Shortest Path`
+
+### Thu
+
+- **Project:** cart persistence + server sync, conflict handling
+- **BE:** cart endpoints with a version column — reject stale writes with 409
+- **DSA:** Word ladder II `BFS / Level Order` *(BFS to record levels, then backtrack from the end word — the full hour)*
+- **LLD:** **Splitwise** — users, groups, expenses, split strategies (equal / exact / percent), simplify debts
+
+### Fri
+
+- **DSA:**
+  - Kosaraju's algorithm `Graph DFS / Connected Components` *(finish order, reverse the graph, DFS again)*
+  - Bridges in graph `Graph DFS / Connected Components`
+  - Articulation point in graph `Graph DFS / Connected Components` *(one `tin` / `low` template for both — only the comparison changes)*
+- **Testing:** write tests for the cart's optimistic path **and** its rollback path
+- **Rev:** Cheapest flight within K stops `Shortest Path`
+
+### Wknd
+
+- *(if available)* 4h: **Month 3 audit** — 8 cold re-solves + deploy the project publicly for the first time
 
 ---
 
 **Month 3 exit check**
-- [ ] ~146 problems committed, including a trie written from memory
-- [ ] The `window-variable` template written from memory, and you can name which of the 10 problems it solves
+- [ ] 141 problems committed — sheet done through Graphs → Shortest Path
+- [ ] Given a graph question, you name BFS / DFS / topo sort / Dijkstra / Bellman-Ford inside the first minute, and say why
 - [ ] Project live: listing → filters → cart, on your own API
 - [ ] Optimistic UI with a rollback path you can demo failing
 - [ ] Products API tested and cached; cart API rejects stale writes

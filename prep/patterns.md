@@ -1,8 +1,57 @@
 # Pattern Index
 
-The point of the whole DSA block. You are not memorising 200 problems — you are learning ~35 patterns and the **trigger** that tells you which one applies. In an interview you recognise the trigger in the first 60 seconds, or you don't solve it.
+The point of the whole DSA block. You are not memorising 179 problems — you are learning ~40 patterns and the **trigger** that tells you which one applies. In an interview you recognise the trigger in the first 60 seconds, or you don't solve it.
 
-Every problem in `daily/` is tagged with one of these.
+Every problem in `daily/` is tagged with the sheet's pattern name; the table below maps each name to the triggers in this file.
+
+---
+
+## Sheet pattern → trigger tags
+
+`daily/` tags every problem with the pattern name used by [Striver's 180 sheet](https://takeuforward.org/prep-hub/strivers-180-master-dsa-patterns?page=sheet). Those names are broad; the tags in the rest of this file are the finer-grained triggers underneath them. Use this table to get from one to the other.
+
+| Sheet pattern (as written in `daily/`) | Trigger tags in this file |
+|---|---|
+| `Basic Traversal / Scan` | `hashing`, `kadane` |
+| `Frequency Counting` | `hashing`, `freq-map` |
+| `Sort and Scan` | `sorting-then-scan`, `dutch-flag`, `cyclic-sort` |
+| `Two Pointer` | `two-pointers-opposite`, `two-pointers-same-dir`, `ll-merge`, `dummy-node` |
+| `Divide and Conquer` | `merge-sort-variant` |
+| `Prefix / Precomputation` | `prefix-sum`, `prefix-sum-hashmap` |
+| `Bitwise XOR` | `xor-trick`, `prefix-sum-hashmap` (XOR in place of subtraction), `trie` (binary trie) |
+| `Lower Bound / Upper Bound` | `bs-index`, `bs-bounds`, `bs-2d`, `bs-partition`, `bst-property` |
+| `Rotated Array Search` | `bs-rotated` |
+| `Search on Answer` | `bs-on-answer` |
+| `Sliding Window` | `window-fixed`, `window-variable`, `window-hashmap` |
+| `Monotonic Stack / Queue` | `monotonic-stack`, `window-deque` |
+| `Subsets` | `pick-nonpick` |
+| `Permutations & Combinations` | `backtracking-build`, `permutation-swap` |
+| `Constraint Satisfaction` | `board-backtracking` |
+| `Fast & Slow Pointers` | `slow-fast` |
+| `In-place Reversal` | `pointer-reversal` |
+| `Simulation / Implementation` | `stack-simulation`, `stack-aux`, `hashmap-dll`, `dummy-node` |
+| `K-way Merge` | `k-way-merge`, `ll-merge` |
+| `Greedy Choice` | `sort-then-greedy`, `exchange-argument` |
+| `Intervals / Scheduling` | `intervals`, `interval-scheduling` |
+| `Top K Elements`, `Priority Queue` | `top-k-heap`, `greedy-heap` |
+| `Two Heaps` | `two-heaps` |
+| `BFS / Level Order` | `bfs-level`, `bfs-grid`, `multi-source-bfs` |
+| `Tree DFS / Recursive Decomposition` | `dfs-recursive`, `dfs-bottom-up`, `path-tracking`, `tree-construction`, `tree-to-graph`, `bst-property` |
+| `Graph DFS / Connected Components` | `dfs-grid`, `cycle-undirected`, `bipartite`, `scc-bridges` |
+| `Topological Ordering` | `topo-sort`, `cycle-directed` |
+| `Shortest Path` | `dijkstra`, `bfs-0-1`, `bellman-ford`, `floyd-warshall` |
+| `Disjoint Set Union` | `dsu`, `mst` |
+| `Linear DP` | `dp-1d` |
+| `Multi-State DP`, `Grid DP` | `dp-grid` |
+| `Stock Trading DP` | `dp-state-machine` |
+| `Knapsack / Subset DP` | `dp-pick-nonpick`, `dp-knapsack` |
+| `String DP` | `dp-strings` |
+| `LIS / Sequence DP` | `dp-lis` |
+| `Interval / Partition DP` | `dp-partition` |
+| `Prefix Matching` | `trie` |
+| `String Matching / Rolling Hash` | `string-matching` |
+| `Bitmask Enumeration` | `bitmask-subsets` |
+| `Number Theory` | `sieve` |
 
 ---
 
@@ -50,6 +99,7 @@ Every problem in `daily/` is tagged with one of these.
 | `xor-trick` | "everything appears twice except one" — XOR cancels pairs |
 | `bit-basics` | Set/clear/check the i-th bit, count set bits, power-of-two checks |
 | `bitmask-subsets` | Generate all subsets by iterating `0..2^n - 1` |
+| `sieve` | "All primes up to N" — mark multiples once instead of testing each number |
 
 ## Strings
 
@@ -58,6 +108,7 @@ Every problem in `daily/` is tagged with one of these.
 | `freq-map` | Anagrams, character counts, sorting by frequency |
 | `expand-center` | Palindromic substrings — expand around each of the 2n−1 centres |
 | `string-simulation` | Parsing — roman numerals, atoi, word reversal. Precision, not cleverness |
+| `string-matching` | Find a pattern inside a text in O(n + m) — KMP (LPS array), Z-function, or a rolling hash (Rabin-Karp). Also "longest prefix that is also a suffix" |
 
 ## Linked List
 
@@ -136,6 +187,9 @@ Every problem in `daily/` is tagged with one of these.
 | `bfs-0-1` | Weights are only 0 and 1 — deque instead of a PQ |
 | `bellman-ford` | Negative edges, or "at most K stops" |
 | `dsu` | Dynamic connectivity, merging groups, "are these connected" |
+| `mst` | Connect everything at minimum total cost — Kruskal (sort edges + `dsu`) or Prim (PQ) |
+| `floyd-warshall` | Shortest paths between **all pairs**, small n — try every node as the intermediate |
+| `scc-bridges` | "Which edge/node disconnects the graph", or strongly connected groups in a directed graph — DFS with discovery/low times (Tarjan), or two passes (Kosaraju) |
 
 ## Dynamic Programming
 
@@ -148,6 +202,7 @@ Every problem in `daily/` is tagged with one of these.
 | `dp-strings` | LCS, edit distance, distinct subsequences — 2D over two string indices |
 | `dp-state-machine` | Stock problems — you're in a state (holding / not holding / cooldown) with transitions |
 | `dp-lis` | Longest increasing subsequence — O(n²) DP, then the O(n log n) patience version |
+| `dp-partition` | The answer depends on where you cut a range — try every split point `k` in `i..j`, solve both sides, combine (matrix chain, palindrome cuts) |
 
 ---
 
