@@ -288,34 +288,123 @@ int main()
     // {
     //     cout << v[i] << ' ';
     // }
-    int n, m;
-    cin >> n >> m;
-    int k;
-    cin >> k;
-    vector<vector<int>> v(n, vector<int>(m, 0));
+    // int n, m;
+    // cin >> n >> m;
+    // int k;
+    // cin >> k;
+    // vector<vector<int>> v(n, vector<int>(m, 0));
+    // for (int i = 0; i < n; i++)
+    // {
+    //     for (int j = 0; j < m; j++)
+    //     {
+    //         cin >> v[i][j];
+    //     }
+    // }
+    // int l = 0, r = m - 1;
+    // while (l < n && r >= 0)
+    // {
+    //     if (v[l][r] == k)
+    //     {
+    //         cout << l << ' ' << r << endl;
+    //         break;
+    //     }
+    //     else if (k<v[l][r])
+    //     {
+    //         r--;
+    //     }
+    //     else
+    //     {
+    //         l++;
+    //     }
+    // }
+    // cout << -1 << endl;
+
+    // int n, m;
+    // cin >> n >> m;
+    // int k;
+    // cin >> k;
+    // vector<vector<int>> v(n, vector<int>(m, 0));
+    // for (int i = 0; i < n; i++)
+    // {
+    //     for (int j = 0; j < m; j++)
+    //     {
+    //         cin >> v[i][j];
+    //     }
+    // }
+    // int l = 0, r = m - 1, f = 0;
+    // while (l < n && r >= 0)
+    // {
+    //     if (v[l][r] == k)
+    //     {
+    //         cout << 'found' << endl;
+    //         cout << l << ' ' << r << endl;
+    //         f = 1;
+    //         break;
+    //     }
+    //     else if (k < v[l][r])
+    //     {
+    //         r--;
+    //     }
+    //     else
+    //     {
+    //         l++;
+    //     }
+    // }
+    // if (!f)
+    // {
+    //     cout << 'not found' << endl;
+    // }
+
+    int n;
+    cin >> n;
+    vector<int> v(n, 0);
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < m; j++)
-        {
-            cin >> v[i][j];
-        }
+        cin >> v[i];
     }
-    int l = 0, r = m - 1;
-    while (l < n && r >= 0)
+    int h, f = 0;
+    cin >> h;
+    int l = 0, r = n - 1;
+    while (l <= r)
     {
-        if (v[l][r] == k)
+        int mid = (l + r) / 2;
+        if (v[mid] == h)
         {
-            cout << l << ' ' << r << endl;
+            cout << "found" << endl;
+            cout << mid << endl;
+            f = 1;
             break;
         }
-        else if (k<v[l][r])
+        if (v[l] == v[mid] && v[mid] == v[r])
         {
-            r--;
+            l++,r--;
+            continue;
+        }
+        if (v[l] < v[mid])
+        {
+            if (v[l] < h && h < v[mid])
+            {
+                r = mid - 1;
+            }
+            else
+            {
+                l = mid + 1;
+            }
         }
         else
         {
-            l++;
+            if (v[mid] < h && h < v[r])
+            {
+                l = mid + 1;
+            }
+            else
+            {
+                r = mid - 1;
+            }
         }
     }
-    // cout << -1 << endl;
+    if (!f)
+    {
+        cout << "not found" << endl;
+    }
 }

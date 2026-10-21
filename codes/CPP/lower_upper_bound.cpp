@@ -14,7 +14,10 @@ int main()
     }
 
     cin >> k;
-    int l = 0, r = n - 1, ans = 0;
+    int l = 0, r = n - 1;
+    // int ans = n; for upper bound keep the ans as n becuase the element can be larger than all element in the array
+    int ans = 0;
+    
     while (l <= r)
     {
         int mid = (l + (r - l) / 2);

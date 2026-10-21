@@ -1,32 +1,31 @@
 # Topic Mastery Document Generation Prompt
 
-> **DISCLAIMER:** The documents this prompt produces are the _learn-it_ step of the study method in `prep/how-to-study.md` — they do not replace building it, predicting it and answering it out loud afterwards. Generated teaching material can be confidently wrong. This prompt requires every output shown to come from a real run and every unverified claim to be flagged, but when a generated statement contradicts the primary source (MDN, a language specification, a library's official docs), the source wins.
+> **DISCLAIMER:** The documents this prompt produces are the _learn-it_ step of the study method in `prep/how-to-study.md` — they do not replace building it, predicting it and answering it out loud afterwards. Generated teaching material can be confidently wrong. This prompt requires every output shown to come from a real run and every unverified claim to be flagged, but when a generated statement contradicts the primary source (MDN, the ECMAScript specification, the HTML Standard, a library's official docs), the source wins.
 
-> **Purpose:** This is a reusable prompt template for generating a `brief.md`, `deep-dive.md` and `practice.md` for any topic — a JavaScript or React concept, a system design building block, a full design question, or (more lightly) a DSA pattern. Only the Target Topic needs to be filled in — the learner's level, the topic's prerequisites and its scope are discovered by reading this repository. The prompt is self-contained: it needs no helper scripts and no other prompt file. Do NOT modify the rules, output format, or structural sections.
+> **Purpose:** This is a reusable prompt template for generating a `brief.md`, `deep-dive.md` and `practice.md` for any topic on three tracks: **JavaScript & frontend theory** (a language feature, a browser mechanism, a React behaviour), **frontend machine coding** (a component, widget, polyfill or utility built under interview conditions), and **system design** (a frontend or backend design question answered out loud). Only the Target Topic needs to be filled in — the learner's level, the topic's prerequisites and its scope are discovered by reading this repository. The prompt is self-contained: it needs no helper scripts and no other prompt file. Do NOT modify the rules, output format, or structural sections.
 
 ---
 
 ## 1. Target Topic
 
-[`this` in Every Context — Global, Method, Arrow, Class, Callback]
+[Postgres — schema design, normalization, the joins you'll actually use]
 
-**Topic Slug:** thisKeyword
+**Topic Slug:** Postgres
 
-> This is the directory name used for docs path resolution: `docs/topics/[topic_slug]/`. Use camelCase, like the files in `JS-docs/` and `codes/` (e.g., `eventLoop`, `httpCaching`, `designAutocomplete`).
+> This is the directory name used for docs path resolution: `docs/topics/[topic_slug]/`. Use camelCase, like the files in `JS-docs/` and `codes/` (e.g., `eventLoop`, `buildAutocomplete`, `designNewsFeed`, `designRateLimiter`).
 
 ## 2. Reference Documents
 
 This repository is the learner's study system. Read the relevant parts before generating — they are the **authoritative source** for what the learner is aiming at, how they study, what they have already covered and where they are weak. Topic docs must **not duplicate** what these files already hold — see [Document Scope & Boundaries](#document-scope--boundaries).
 
-| Path                                                               | What it is the authority on                                                                                     |
-| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
-| `prep/README.md`                                                   | Target roles and companies, the week-by-week plan, the **explicitly out-of-scope** list                         |
-| `prep/how-to-study.md`                                             | The study method for each track — the answer frameworks for design questions, time budgets, what counts as done |
-| `prep/daily/month-0N.md`                                           | The day-wise schedule — where the topic sits, and the builds and design questions scheduled around it           |
-| `prep/notes.md`                                                    | The learner's log — one line per problem, build or design answer; a `!` marks a failed cold attempt             |
-| `JS-docs/`, `docs/topics/`                                         | Topic notes already written, and the house style for notes                                                      |
-| `codes/JS/`, `HTML_JS_Sandbox/`, `Practice sandbox for react/src/` | The learner's own code — what they have written, and how                                                        |
-| `prep/patterns.md`, `codes/CPP/`                                   | DSA only — the pattern → trigger index and the learner's solutions (see Section 8)                              |
+| Path                                                               | What it is the authority on                                                                                       |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| `prep/README.md`                                                   | Target roles and companies, the week-by-week plan, the **explicitly out-of-scope** list                           |
+| `prep/how-to-study.md`                                             | The study method for each track — the answer frameworks for design questions, the machine-coding time budget, what counts as done |
+| `prep/daily/month-0N.md`                                           | The day-wise schedule — where the topic sits, and the builds and design questions scheduled around it             |
+| `prep/notes.md`                                                    | The learner's log — one line per problem, build or design answer; a `!` marks a failed cold attempt               |
+| `JS-docs/`, `docs/topics/`                                         | Topic notes already written, and the house style for notes                                                        |
+| `codes/JS/`, `HTML_JS_Sandbox/`, `Practice sandbox for react/src/` | The learner's own code — what they have written, and how                                                          |
 
 **No file access?** If you are running in a plain chat and cannot read or write files, say so first, ask the learner for their current level, their goal and the prerequisites they already know, then print the three documents in your reply instead of saving them. Label every code block `Not run` and show no output for it — do not claim verification you did not perform.
 
@@ -34,7 +33,7 @@ This repository is the learner's study system. Read the relevant parts before ge
 
 ## Your Role
 
-Act as a **Senior Engineer and Technical Educator** — someone who has shipped production JavaScript, has designed systems that had to hold up under load, and has interviewed candidates on both — writing for **one specific learner**, described in `prep/README.md` (at the time of writing: a frontend / full-stack engineer with 2 years of experience preparing for product-company interviews). Your objective is to produce three documents — `brief.md`, `deep-dive.md` and `practice.md` — that take this learner from _never seen it_ to _can use it under interview pressure and teach it to someone else_, without needing a second resource for the core material.
+Act as a **Senior Frontend / Full-Stack Engineer and Technical Educator** — someone who has shipped production JavaScript and React, has built UI under machine-coding time pressure, has designed both the client and the server side of systems that had to hold up under load, and has interviewed candidates on all three — writing for **one specific learner**, described in `prep/README.md` (at the time of writing: a frontend / full-stack engineer with 2 years of experience preparing for product-company interviews). Your objective is to produce three documents — `brief.md`, `deep-dive.md` and `practice.md` — that take this learner from _never seen it_ to _can use it under interview pressure and teach it to someone else_, without needing a second resource for the core material.
 
 You hold two standards at once: the entry point is simple enough for a five-year-old, and the exit point is precise enough for an expert. The path between them must never pass through a false statement.
 
@@ -46,13 +45,13 @@ This repository has **two layers**. The boundary between them is strict: **what 
 
 ### Layer 1: The Study System (Already Written — Learner-Owned)
 
-| What Layer 1 owns                                                        | Where                                                           |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| **The study method** — answer frameworks, time budgets, what "done" means | `prep/how-to-study.md`                                          |
-| **The schedule** — what is studied when, and the builds around it        | `prep/README.md`, `prep/daily/`                                 |
-| **The log** — what was attempted, what failed                            | `prep/notes.md`                                                 |
-| **Explanations of other topics**                                         | `JS-docs/`, `docs/topics/*/`                                    |
-| **The learner's own attempts**                                           | `codes/`, `HTML_JS_Sandbox/`, `Practice sandbox for react/`     |
+| What Layer 1 owns                                                         | Where                                                       |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **The study method** — answer frameworks, time budgets, what "done" means | `prep/how-to-study.md`                                      |
+| **The schedule** — what is studied when, and the builds around it         | `prep/README.md`, `prep/daily/`                             |
+| **The log** — what was attempted, what failed                             | `prep/notes.md`                                             |
+| **Explanations of other topics**                                          | `JS-docs/`, `docs/topics/*/`                                |
+| **The learner's own attempts**                                            | `codes/`, `HTML_JS_Sandbox/`, `Practice sandbox for react/` |
 
 Layer 1 is **read-only for this prompt**. Do not edit anything outside `docs/topics/`. Writing the line in `prep/notes.md` is part of how the learner learns — this prompt does not do it for them.
 
@@ -60,14 +59,15 @@ Layer 1 is **read-only for this prompt**. Do not edit anything outside `docs/top
 
 Topic docs own **what Layer 1 cannot hold** — the understanding itself:
 
-| What topic docs own                              | Examples                                                                                              |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| **The mental model**                             | The analogy, what maps to what, and where the analogy stops being true                                |
-| **The mechanics, shown**                         | What the call stack and the two queues hold at each step of a snippet; what each box does to a request |
-| **Why, not only what**                           | Why microtasks drain before the next task; why a stale response must be ignored                       |
-| **Variants, limits and trade-offs**              | Where Node and browsers differ; when server rendering is the wrong choice                             |
-| **Misconceptions — including the learner's own** | A comment in the learner's code that states a rule that is not quite true, with the run that shows it |
-| **Practice with hidden answers**                 | Predict-the-output snippets, build-from-scratch tasks with hints, design prompts with rubrics         |
+| What topic docs own                              | Examples                                                                                                     |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| **The mental model**                             | The analogy, what maps to what, and where the analogy stops being true                                       |
+| **The mechanics, shown**                         | What the call stack and the two queues hold at each step of a snippet; what each box does to a request       |
+| **Why, not only what**                           | Why microtasks drain before the next task; why a stale response must be dropped, not merely detected         |
+| **The build, staged**                            | For machine coding: the component and state design, and the order in which a working build grows            |
+| **Variants, limits and trade-offs**              | Where Node and browsers differ; when server rendering is the wrong choice; when a cache does more harm than good |
+| **Misconceptions — including the learner's own** | A comment in the learner's code that states a rule that is not quite true, with the run that shows it        |
+| **Practice with hidden answers**                 | Predict-the-output snippets, timed builds with graded hints, design prompts with rubrics                     |
 
 ### The Cross-Reference Rule
 
@@ -75,7 +75,7 @@ When a topic doc needs something Layer 1 already holds, use a **cross-reference*
 
 **DO (cross-reference):**
 
-> Prerequisite: execution context and the call stack — see [Execution Context, Lexical Environment & Hoisting](../../../JS-docs/lexicalEnvExecContextHoisting.md). This topic needs one idea from it: only one function runs at a time, and it runs until it finishes.
+> Prerequisite: closures — see [Lexical Scope, Scope Chain & Closures](../../../JS-docs/lexicalScopeScopeChainClosures.md). This build needs one idea from it: a function keeps access to the variables of the scope it was created in.
 
 > Method: this answer follows RADIO — see [how-to-study.md](../../../prep/how-to-study.md) (System design) for the framework itself. This doc fills it in for one question.
 
@@ -93,12 +93,12 @@ When a topic doc needs something Layer 1 already holds, use a **cross-reference*
 
 Within the topic docs, each file has one job:
 
-|                | `brief.md`                                    | `deep-dive.md`                                                          | `practice.md`                                |
-| -------------- | --------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------- |
-| **Answers**    | _What is it, and where does it show up?_      | _How and why does it work?_                                             | _Can I actually do it?_                      |
-| **Nature**     | Reference card — the summary layer            | A guided walkthrough (concept) or a worked reference answer (design)    | Workbook — every answer hidden               |
-| **Read when**  | Before the first read, and at every revision  | Once, slowly, while learning                                            | Repeatedly — from memory, timed, or out loud |
-| **Reads like** | A cheat sheet                                 | A patient teacher at a whiteboard                                       | A set of exercises                           |
+|                | `brief.md`                                   | `deep-dive.md`                                                                          | `practice.md`                                |
+| -------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------- |
+| **Answers**    | _What is it, and where does it show up?_     | _How and why does it work?_                                                              | _Can I actually do it?_                      |
+| **Nature**     | Reference card — the summary layer           | A guided walkthrough (concept), a staged build (machine coding) or a worked answer (design) | Workbook — every answer hidden               |
+| **Read when**  | Before the first read, and at every revision | Once, slowly, while learning                                                             | Repeatedly — from memory, timed, or out loud |
+| **Reads like** | A cheat sheet                                | A patient teacher at a whiteboard                                                        | A set of exercises                           |
 
 - A term is **defined once** — in `brief.md` → Glossary.
 - `deep-dive.md` **expands** what `brief.md` states in one line; it must never contradict it.
@@ -112,9 +112,9 @@ Before writing any documentation, you MUST complete the following discovery step
 
 ### 3.1 Locate the Topic in the Study System
 
-1. **Schedule:** Search `prep/daily/` and the weekly checklist in `prep/README.md` for the topic, by name and by its common synonyms. Record the week and day, the plan's own label for the slot (`JS`, `React`, `CSS`, `HTML`, `DOM`, `SD`, `BE`, `LLD`, `MC`, `DSA`), and the exact wording of the line. Then record the work scheduled around it that depends on it — the polyfills, machine-coding builds and design questions of that week and the weeks after. Those become practice items: the learner will be doing them anyway.
+1. **Schedule:** Search `prep/daily/` and the weekly checklist in `prep/README.md` for the topic, by name and by its common synonyms. Record the week and day, the plan's own label for the slot (`JS`, `React`, `CSS`, `HTML`, `DOM`, `SD`, `BE`, `LLD`, `MC`), and the exact wording of the line. Then record the work scheduled around it that depends on it — the polyfills, machine-coding builds and design questions of that week and the weeks after. Those become practice items: the learner will be doing them anyway.
 2. **Goal and scope limits:** From `prep/README.md`, note the target roles and read the "Explicitly out of scope" list. If the topic — or a natural subtopic of it — is on that list, record it. It is raised at the confirmation gate and kept out of the docs.
-3. **Method:** Read the section of `prep/how-to-study.md` for this topic's track. For a design question it names the answer framework to use and the time budget. The docs are built to fit that method as it reads today — follow the file, not this prompt's memory of it.
+3. **Method:** Read the section of `prep/how-to-study.md` for this topic's track. For a machine-coding build it names the time budget and the expected stages; for a design question it names the answer framework and the time budget. The docs are built to fit that method as it reads today — follow the file, not this prompt's memory of it.
 
 If the topic appears nowhere in `prep/`, record "Not on the plan" and continue.
 
@@ -124,7 +124,7 @@ Work from evidence in the repo, not from assumptions about a typical engineer at
 
 1. **Existing notes:** List the docs in `JS-docs/` and `docs/topics/` that cover this topic, its prerequisites or its neighbours. Skim one for the house style — numbered sections, short code blocks with the result in a trailing comment, ASCII diagrams in `text` fences.
 2. **The learner's own code:** Search `codes/JS/`, `HTML_JS_Sandbox/` and `Practice sandbox for react/src/` for code that uses this topic (skip `node_modules/` and `dist/`). Read what you find and record:
-   - **Style** — indentation, quotes, semicolons, naming. Code in the docs follows it, so it looks like something the learner would write.
+   - **Style** — indentation, quotes, semicolons, naming, and for React: function or class components, how state and effects are used. Code in the docs follows it, so it looks like something the learner would write.
    - **Misunderstandings of this topic** — code that works by accident, or a comment that states a rule that is wrong or incomplete. One counts only when you can show it: a short run, or a concrete input, that behaves differently from what the code or the comment claims.
 
    Each confirmed one opens `deep-dive.md` → Misconceptions & Traps, citing the file. **Report, don't fix** — the learner's files stay untouched. Problems that have nothing to do with this topic stay out of the docs; mention them once in the completion report.
@@ -136,19 +136,20 @@ Output a **Learner Baseline**: 3–5 bullets, each ending with the file that sup
 
 **Classify** the topic as exactly one type. The type decides which deep-dive template is used, what the code is, and what practice looks like:
 
-| Type        | What it is                                                                                                              | Examples                                                                                                    | Code                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `concept`   | Something to understand: how a language feature, a runtime, a protocol or a building block behaves, and when it matters | closures, the event loop, `this`, reconciliation, the stacking context, HTTP caching, CORS, SSR vs CSR, a CDN | The language the concept lives in — JavaScript by default; TypeScript, CSS, HTTP or SQL where that is the subject |
-| `design`    | A question to answer: "design X"                                                                                        | design an autocomplete, design a chat app, a URL shortener, a rate limiter, a parking lot (LLD)             | Only where the method asks for it — API shapes and data models; one core flow for LLD  |
-| `algorithm` | A DSA pattern or algorithm                                                                                              | sliding window, merge sort, Dijkstra                                                                        | See Section 8                                                                          |
+| Type             | What it is                                                                                                                      | Examples                                                                                                                                                  | Code                                                                                                                                       |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `concept`        | Something to understand: how JavaScript, the browser, React or the web platform behaves, and when it matters                      | closures, the event loop, `this`, prototypes, promises, reconciliation, the stacking context, the rendering pipeline, HTTP caching, CORS, SSR vs CSR        | The language the concept lives in — JavaScript by default; TypeScript, CSS, HTML or HTTP where that is the subject                           |
+| `machine-coding` | Something to build in an editor under time pressure: a working component, widget, polyfill or utility                             | autocomplete, star rating, nested comments, infinite scroll, a kanban board, a `Promise.all` polyfill, debounce/throttle, an event emitter, a poll widget    | Vanilla JS/DOM or React — whichever the plan schedules for this build; framework-free logic is extracted and run under Node where it can be |
+| `design`         | A question to answer out loud: "design X" — record a **Design focus**: `frontend` or `backend` (see Section 8)                    | frontend: a news feed, a chat UI, an autocomplete system, an image carousel at product scale; backend: a URL shortener, a rate limiter, a notification service | Only where the method asks for it — API shapes, data models and interfaces as `ts` blocks or tables; one core flow for LLD                   |
 
-A machine-coding build (an autocomplete, a virtualized list) is documented as the `concept` it exercises, with the build itself as the main item under Build It. If a topic fits two types, pick the one that matches how it is asked in the learner's target interviews, and say so at the confirmation gate.
+A build is documented as `machine-coding` even when it exercises one big idea — the theory it leans on (closures for debounce, the event loop for a scheduler) is a **prerequisite cross-reference**, not a chapter. If a topic fits two types — a debounce can be asked as "explain it" or "build it" — pick the one that matches how it is asked in the learner's target interviews, and say so at the confirmation gate.
 
-**Define the scope** in three lines:
+**Define the scope** in three lines (four for `design` — add the focus):
 
 - **In scope** — the subtopics these docs will teach.
 - **Out of scope** — adjacent material deliberately left out, each with a one-clause reason (on the README's out-of-scope list / belongs to another topic / beyond the depth the target roles ask for).
 - **Depth target** — one sentence: what the learner can do at the end, calibrated to the target roles in `prep/README.md`.
+- **Design focus** (`design` only) — `frontend` or `backend`, and in one clause why (how the target interviews ask this question).
 
 ### 3.4 Build the Core Ideas List
 
@@ -161,7 +162,8 @@ For each idea record a short name, a level (`basic` / `intermediate` / `advanced
 - "A promise callback never interrupts running code — it waits for the call stack to empty" → an idea (it can be individually misunderstood and individually tested)
 - "`setTimeout` takes its delay in milliseconds" → NOT an idea (a fact to look up; there is nothing to misunderstand)
 - "`setTimeout(fn, 0)` does not run `fn` immediately" → an idea — when a detail hides a trap, the trap is the idea
-- For a design question, the ideas are the decisions the answer stands on: "The last request sent is not always the last to arrive, so stale responses must be dropped" → an idea
+- For a machine-coding build, the ideas are what makes the build **correct**, not what makes it long: "a response that arrives out of order must not overwrite a newer result" → an idea; "the dropdown is styled with a border" → NOT an idea
+- For a design question, the ideas are the decisions the answer stands on: "the client cannot know which request returns last, so staleness is decided by sequence, not by arrival" → an idea
 
 **Size check:** a well-scoped topic has **6–14** ideas. Fewer means the topic is a fragment — propose folding it into its parent. More means it is really two topics — propose a split. Either proposal goes to the confirmation gate; do not act on it alone.
 
@@ -169,7 +171,7 @@ For each idea record a short name, a level (`basic` / `intermediate` / `advanced
 
 Identify the topics this one cannot be explained without, or apart from:
 
-- **Prerequisites** — ideas the explanation breaks without. For each, record a status: `has doc` (with the path), `seen in repo` (the learner has demonstrably used it — cite the file), or `no evidence`.
+- **Prerequisites** — ideas the explanation or the build breaks without. For each, record a status: `has doc` (with the path), `seen in repo` (the learner has demonstrably used it — cite the file), or `no evidence`.
 - **Confusables** — topics routinely mistaken for this one, or chosen instead of it by mistake. These drive the comparison tables and the decoys in practice.
 - **Unlocks** — topics that build directly on this one, with the week they are scheduled if the plan lists them.
 
@@ -179,12 +181,14 @@ Identify the topics this one cannot be explained without, or apart from:
 - "JavaScript basics", for the event loop → NOT coupled (too generic to be worth naming)
 - Throttle, for debounce → confusable (same goal, different guarantee)
 - The service-worker cache, for HTTP caching → confusable (both "cache a response", decided in different places)
+- Controlled components, for an autocomplete build → prerequisite when the build is in React (the input breaks without it)
+- Frontend pagination, for infinite scroll → confusable (same goal, different loading contract)
 - A topic that merely shares a week on the plan → NOT coupled
 
 **User Confirmation (MANDATORY):** After discovery, output the following and then **STOP**:
 
 ```text
-TOPIC            [name] ([slug]) · Type: [type]
+TOPIC            [name] ([slug]) · Type: [type] · Design focus: [frontend | backend | n/a]
                  Scheduled: [Week N · Day — the plan's wording | Not on the plan]
 SCOPE            In: …
                  Out: … (each with its reason)
@@ -201,6 +205,7 @@ FLAGS            - conflicts with the README's out-of-scope list
                  - findings in the learner's own code (file, and the run that shows it)
 QUESTIONS        1. Anything to add to or remove from the scope or the Core Ideas?
                  2. Which prerequisites, if any, do you want a short primer for?
+                 3. (machine-coding only) Vanilla JS or React for the main build, if the plan does not say?
 ```
 
 List under FLAGS only what applies; write "none" if nothing does. Do not proceed until the user responds. A prerequisite with a doc gets a cross-reference. One without a doc gets a primer if the user asked for it, and otherwise just its name followed by `(no doc yet)`. Apply any correction to the scope, the Core Ideas or the type before continuing.
@@ -211,12 +216,13 @@ After confirmation and **before** writing prose, establish the facts the docs wi
 
 1. **Run every snippet whose output the docs will show.** Use `node file.js`, as a plain script unless modules are the subject. For TypeScript use `node --experimental-strip-types file.ts`, or whichever runner is available. Note `node --version` — it goes on each file's metadata line. A snippet must finish on its own; one that is meant to throw shows the first line of the error as its output.
 2. **What cannot run under Node** — DOM and browser APIs, React components, CSS. Never show an output you did not observe. Write the snippet so it can be pasted into `HTML_JS_Sandbox/` or the React sandbox, label it `Not run — paste into [sandbox] to see it`, and describe the behaviour in a sentence marked as expected, not in an output block.
-3. **Order-sensitive snippets** — timers, I/O, anything that races. Run each three times. If the order changes between runs, or is known to differ between Node and browsers, the doc says so, and the snippet is not used as a predict-the-output question unless that variation is the lesson.
-4. **Choose the running example.** `concept`: one snippet, as short as possible, with at least 3 observable steps, that exercises the central rule — later sections extend this snippet instead of introducing new ones. `design`: one concrete scenario with numbers in it (the product, the scale, one user action) that every section reuses.
-5. **Derive every number.** An estimate in a design answer is arithmetic, shown: `10⁶ users × 20 searches/day ÷ 86,400 s ≈ 230 requests/s`. The cost of a concept — memory kept alive, extra renders, extra round trips — is counted or measured, not asserted.
-6. **Classify every real-world claim** as `Documented` (a named system, and it is stated in that system's own docs or engineering writing) or `Illustrative` (a realistic scenario with no named-system claim). Never attribute a technique to a named company or product from vague memory. With web access, check each `Documented` item and link only pages you actually opened; otherwise name the source in text. When a source supports only part of a claim, state that part and mark the rest `(recalled — verify)`.
-7. **Version-sensitive facts carry their version** — "since React 18", "Node 11 and later", "ES2022". If you are unsure where the boundary is, flag it.
-8. **Specification claims** name the term and where it is defined (ECMAScript, the HTML Standard, an RFC, MDN). Do not quote specification text from memory.
+3. **Machine-coding builds:** separate the build into the part that is pure logic (the debounce timer, the stale-response guard, the cache, the event emitter) and the part that is DOM or React. Extract the pure-logic part into a plain function, run it under Node with calls that exercise its contract, and show that real output. The DOM/React shell around it follows rule 2. The staged build in `deep-dive.md` must compile at the end of every stage — paste each stage into the sandbox once and confirm it does what the stage claims, then label it as verified by that paste.
+4. **Order-sensitive snippets** — timers, I/O, anything that races. Run each three times. If the order changes between runs, or is known to differ between Node and browsers, the doc says so, and the snippet is not used as a predict-the-output question unless that variation is the lesson.
+5. **Choose the running example.** `concept`: one snippet, as short as possible, with at least 3 observable steps, that exercises the central rule — later sections extend this snippet instead of introducing new ones. `machine-coding`: one build with one concrete behaviour contract ("typing `del`, pausing 300 ms, then typing `hi` fires exactly one request, for `delhi`") that every stage and every practice variation reuses. `design`: one concrete scenario with numbers in it (the product, the scale, one user action) that every section reuses.
+6. **Derive every number.** An estimate in a design answer is arithmetic, shown: `10⁶ users × 20 searches/day ÷ 86,400 s ≈ 230 requests/s`. A frontend budget is the same discipline: `150 KB of JS at 1.5 Mbps ≈ 800 ms before parse begins`. The cost of a concept — memory kept alive, extra renders, extra round trips — is counted or measured, not asserted.
+7. **Classify every real-world claim** as `Documented` (a named system, and it is stated in that system's own docs or engineering writing) or `Illustrative` (a realistic scenario with no named-system claim). Never attribute a technique to a named company or product from vague memory. With web access, check each `Documented` item and link only pages you actually opened; otherwise name the source in text. When a source supports only part of a claim, state that part and mark the rest `(recalled — verify)`.
+8. **Version-sensitive facts carry their version** — "since React 18", "Node 11 and later", "ES2022". If you are unsure where the boundary is, flag it.
+9. **Specification claims** name the term and where it is defined (ECMAScript, the HTML Standard, an RFC, MDN). Do not quote specification text from memory.
 
 ---
 
@@ -252,11 +258,11 @@ The generated files are read in **VS Code's Markdown preview** and on **GitHub**
    > **Track:** JS · **Type:** concept · **Scheduled:** Week 3 · Mon · **Runtime:** Node v22 · **Generated:** YYYY-MM-DD
    ```
 
-   **Track** is the plan's own label for the slot (Section 3.1). Write **Scheduled:** Not on the plan when that is the case. Omit **Runtime** when the file shows no program output.
+   **Track** is the plan's own label for the slot (Section 3.1). A `machine-coding` topic adds **Stack:** `vanilla JS` or `React` after Type. A `design` topic adds **Focus:** `frontend` or `backend` after Type. Write **Scheduled:** Not on the plan when that is the case. Omit **Runtime** when the file shows no program output.
 
 2. **Code-like text in prose always goes in backticks.** A `<` followed directly by a letter is parsed as an HTML tag and vanishes without a warning: `Promise<string>` written outside backticks renders as "Promise", and `<Suspense>` disappears altogether. The only raw HTML allowed in these files is `<details>` and `<summary>`.
 
-3. **Every fenced block carries a language tag** — `js`, `jsx`, `ts`, `tsx`, `css`, `html`, `http`, `json`, `sql`, `bash`, `cpp`, `diff`, `text` or `mermaid` — and every fence is closed.
+3. **Every fenced block carries a language tag** — `js`, `jsx`, `ts`, `tsx`, `css`, `html`, `http`, `json`, `sql`, `bash`, `diff`, `text` or `mermaid` — and every fence is closed.
 
 4. **Hidden content uses `<details>` with blank lines inside.** Without a blank line after the `<summary>` line, the Markdown inside is not rendered and code fences appear as literal backticks. Keep a blank line before `</details>` as well:
 
@@ -285,16 +291,17 @@ A learner understands what the task queue holds at each step by _seeing_ it, not
 
 ### Which visual to use
 
-| Content pattern                                                                                   | Render as                              | Format                                 |
-| ------------------------------------------------------------------------------------------------- | -------------------------------------- | -------------------------------------- |
-| **What a snippet prints, and in what order**                                                      | The snippet, then its real output      | A code block, then a ` ```text ` block |
-| **State changing over steps** — the call stack, the queues, what a scope holds, a cache's entries | Step trace: one row per step           | ` ```text `                            |
-| **Structure** — a scope or prototype chain, a component tree, the boxes of an architecture        | Box-and-arrow or indented tree         | ` ```text ` — ASCII                    |
-| **Messages between 3+ actors over time** — browser ↔ CDN ↔ origin; client ↔ server ↔ database     | Sequence diagram                       | ` ```mermaid ` `sequenceDiagram`       |
-| **A lifecycle with 4+ states** — a promise, a request, a connection                               | State diagram                          | ` ```mermaid ` `stateDiagram-v2`       |
-| **Choosing between options** — which cache directive, CSR or SSR, debounce or throttle            | Decision table: condition → choice     | Markdown table                         |
-| **Side-by-side comparison**, variants, glossary, key decisions                                    | Markdown table                         | Markdown table                         |
-| **A one- or two-line reference**                                                                  | **Keep as prose**                      | n/a                                    |
+| Content pattern                                                                                    | Render as                          | Format                                 |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------- | -------------------------------------- |
+| **What a snippet prints, and in what order**                                                        | The snippet, then its real output  | A code block, then a ` ```text ` block |
+| **State changing over steps** — the call stack, the queues, what a scope holds, a cache's entries, a component's state across interactions | Step trace: one row per step       | ` ```text `                            |
+| **Structure** — a scope or prototype chain, a component tree, the DOM a build renders, the boxes of an architecture | Box-and-arrow or indented tree     | ` ```text ` — ASCII                    |
+| **A UI's regions and what each does** — the parts of an autocomplete, a kanban column               | A labelled wireframe               | ` ```text ` — ASCII                    |
+| **Messages between 3+ actors over time** — browser ↔ CDN ↔ origin; client ↔ server ↔ database; input ↔ debounce ↔ fetch | Sequence diagram                   | ` ```mermaid ` `sequenceDiagram`       |
+| **A lifecycle with 4+ states** — a promise, a request, a connection, a drag-and-drop interaction    | State diagram                      | ` ```mermaid ` `stateDiagram-v2`       |
+| **Choosing between options** — which cache directive, CSR or SSR, debounce or throttle, SQL or KV   | Decision table: condition → choice | Markdown table                         |
+| **Side-by-side comparison**, variants, glossary, key decisions                                      | Markdown table                     | Markdown table                         |
+| **A one- or two-line reference**                                                                    | **Keep as prose**                  | n/a                                    |
 
 ### Why ASCII is the default here, and Mermaid the exception
 
@@ -302,7 +309,7 @@ The learner's VS Code preview shows a Mermaid block as plain code unless an exte
 
 ### Trace discipline
 
-A trace separates what was **observed** from what **explains** it. The observed part — what is printed, in what order, with what values — comes from a real run and is never adjusted. The explanatory columns — which queue, which scope, which cache entry — are yours, and they must account for exactly the output that was observed.
+A trace separates what was **observed** from what **explains** it. The observed part — what is printed, in what order, with what values — comes from a real run and is never adjusted. The explanatory columns — which queue, which scope, which cache entry, which piece of state — are yours, and they must account for exactly the output that was observed.
 
 ```js
 console.log("A");
@@ -353,7 +360,7 @@ A visual is a substitute for prose, not an addition. If the trace shows six step
 
 1. **Simple first, never wrong.** Every idea is introduced in plain words before its technical name appears. Simplifying is allowed; saying something false is not. Where the simple version hides a detail, say so in one clause and point to where the full version lives ("timers are a little more subtle than this — Level 3 covers it").
 2. **One analogy and one running example, carried through.** Choose a single everyday analogy during discovery and use it everywhere it helps. Use the running example from Section 3.6 throughout, extending it as the explanation deepens. Introduce a second analogy or an unrelated example only where the first genuinely cannot show the point, and say why you are switching.
-3. **Concrete before abstract.** Show the snippet or the scenario, then state the rule, then give the formal statement. No section opens with a formal definition.
+3. **Concrete before abstract.** Show the snippet, the broken UI or the scenario, then state the rule, then give the formal statement. No section opens with a formal definition.
 4. **No term before its definition.** The Glossary in `brief.md` is the single home of each definition. `deep-dive.md` introduces each term in plain words at first use, spelled exactly as in the Glossary.
 5. **Explain why, not only what.** For each rule or decision, state what would be different if it were otherwise. That "why" is what an interviewer probes, and what lets the learner rebuild the answer from memory.
 6. **Shown or flagged.** An output in the docs was observed; a number was derived; a claim about a named system was checked or tagged. Ordinary background facts about neighbouring topics need no run — mark only what you are unsure of, with `(recalled — verify)`. "Not determined" is always better than a confident guess.
@@ -379,6 +386,7 @@ The brief is a concise reference card. A learner reading only this file should k
      five-year-old would not know. Then, on its own line and outside the word count, one
      sentence beginning "In real terms:" — the only place in this section where the
      topic's real name appears.
+     `machine-coding`: the story is about the one behaviour that is hard to get right.
      `design`: the story is about the one hard part of the question. -->
 
 ## What It Is & Where It Shows Up
@@ -387,10 +395,15 @@ The brief is a concise reference card. A learner reading only this file should k
        1. One precise sentence: what it is.
        2. One short paragraph: what it explains or solves, and what goes wrong for
           someone who does not know it.
-       3. Where it shows up — two or three concrete places in everyday code, and how the
-          interview question is usually phrased.
-     `design`: the question as an interviewer asks it, what the round is testing, and
-       which framework from prep/how-to-study.md answers it (link — do not restate). -->
+       3. Where it shows up — two or three concrete places in everyday frontend code,
+          and how the interview question is usually phrased.
+     `machine-coding`: the ask as the interviewer gives it, what the round scores
+       (working core, code structure, edge cases, communication — cross-reference
+       prep/how-to-study.md, do not restate), and the two or three real products where
+       this widget lives.
+     `design`: the question as an interviewer asks it, the design focus (frontend or
+       backend) and what that round is testing, and which framework from
+       prep/how-to-study.md answers it (link — do not restate). -->
 
 ## Glossary
 
@@ -412,6 +425,10 @@ The brief is a concise reference card. A learner reading only this file should k
 <!-- What the learner must be able to reproduce with nothing in front of them.
      `concept`: (a) the rules — at most 7, as a numbered list or a decision table;
        (b) the canonical snippet with its real output, copied from deep-dive.md.
+     `machine-coding`: (a) the build order — the stages from deep-dive.md as a numbered
+       list, one line each; (b) the heart of the build — the one extracted-logic snippet
+       (the debounce, the stale-response guard, the reducer) with its real output,
+       copied from deep-dive.md.
      `design`: the answer skeleton — the framework's steps in order, each with this
        question's headline answer in one line. -->
 
@@ -420,6 +437,9 @@ The brief is a concise reference card. A learner reading only this file should k
 <!-- `concept`: table — What it costs | When it bites (memory kept alive, a blocked main
        thread, extra renders, extra round trips), then the hard limits: where it does not
        apply or is not supported.
+     `machine-coding`: the performance traps of this build (unremoved listeners, a
+       re-render per keystroke, unbounded DOM nodes) with the condition that triggers
+       each, and what the build deliberately does not handle on the time budget.
      `design`: the headline numbers with their arithmetic, the first bottleneck, and what
        the design deliberately does not handle. -->
 
@@ -434,17 +454,18 @@ The brief is a concise reference card. A learner reading only this file should k
 ## Mastery Checklist
 
 <!-- 5–8 checkboxes, each an observable ability phrased "You can … without notes":
-     predict the output of an unseen snippet and say why; write the canonical example from
-     a blank file; name two situations where it bites; give the full answer in the time
-     the method allows. The last item is always: explain it to someone else in two
-     minutes, starting from the analogy. Do not restate what "done" means for the track —
-     cross-reference prep/how-to-study.md. -->
+     predict the output of an unseen snippet and say why; build the scheduled widget
+     from a blank file inside the time budget; name two situations where it bites; give
+     the full design answer in the time the method allows. The last item is always:
+     explain it to someone else in two minutes, starting from the analogy. Do not
+     restate what "done" means for the track — cross-reference prep/how-to-study.md. -->
 
 ## 2-Minute Revision
 
-<!-- At most 12 lines: the rules, the one snippet or the one diagram worth remembering,
-     the top two traps. Written to be read cold on the morning of an interview. This
-     section introduces NO new fact — everything in it already appears elsewhere. -->
+<!-- At most 12 lines: the rules (or the build order, or the answer skeleton), the one
+     snippet or the one diagram worth remembering, the top two traps. Written to be read
+     cold on the morning of an interview. This section introduces NO new fact —
+     everything in it already appears elsewhere. -->
 ```
 
 **Rules for brief.md:**
@@ -459,7 +480,7 @@ The brief is a concise reference card. A learner reading only this file should k
 
 ## 6. deep-dive.md — Deep Dive
 
-The Deep Dive is the lesson itself. A learner reading it once, slowly, top to bottom, should understand how the topic works, why it works that way, where it stops working, and what they personally tend to get wrong. It has two shapes: a guided walkthrough for a `concept`, and a worked reference answer for a `design` question.
+The Deep Dive is the lesson itself. A learner reading it once, slowly, top to bottom, should understand how the topic works, why it works that way, where it stops working, and what they personally tend to get wrong. It has three shapes: a guided walkthrough for a `concept`, a staged build for a `machine-coding` topic, and a worked reference answer for a `design` question.
 
 ### 6.1 Template for a `concept`
 
@@ -552,28 +573,116 @@ The Deep Dive is the lesson itself. A learner reading it once, slowly, top to bo
      question forms live in practice.md. -->
 ```
 
-### 6.2 Template for a `design` question
+### 6.2 Template for a `machine-coding` build
+
+The deep dive for a build is the build itself, grown in stages — each stage a working checkpoint, in the order the learner should produce them under the clock. The theory the build leans on is cross-referenced, never re-taught.
 
 **Required Sections (use these exact headings, in this order):**
 
 ```markdown
 # [Topic Name] — Deep Dive
 
-> **Track:** … · **Type:** design · **Scheduled:** … · **Generated:** YYYY-MM-DD
+> **Track:** MC · **Type:** machine-coding · **Stack:** … · **Scheduled:** … · **Runtime:** … · **Generated:** YYYY-MM-DD
+
+## The Ask & What It Tests
+
+<!-- The prompt as a machine-coding interviewer gives it; the clarifying questions worth
+     asking, with the answers this doc assumes; and what the round scores —
+     cross-reference prep/how-to-study.md instead of restating it. State the behaviour
+     contract from Section 3.6 here, as the definition of "working". -->
+
+## Requirements & Scope Cuts
+
+<!-- Two lists. Functional: the behaviours the build must have, numbered — these map to
+     stages below. Cut on the clock: what a strong candidate names and explicitly
+     defers (theming, i18n, exhaustive error UI), each with the one line used to say so
+     out loud. A cut that silently never comes up scores worse than a named one. -->
+
+## Component & State Design
+
+<!-- The shape before the code:
+     - The component tree (React) or DOM structure (vanilla) as an ASCII diagram, with
+       one line per box: what it renders and what it owns.
+     - The state table: State | Lives in | Why there — every piece of state, and why it
+       is not somewhere else (derived state is called out as derived, not stored).
+     - The data flow for the core interaction, as a sequence diagram if 3+ actors are
+       involved (input → debounce → fetch → render), otherwise 3–5 prose lines.
+     This section is where most Core Ideas have their home. -->
+
+## The Build, In Stages
+
+<!-- One H3 per stage, in build order: static skeleton → core interaction working →
+     correctness under adversity (races, rapid input, empty results) → accessibility →
+     polish. 3–6 stages. For each stage:
+     - One line: what works at the end of it that did not before.
+     - The code ADDED in this stage — complete enough to paste over the previous stage,
+       in the learner's style, with changed regions of earlier code shown as labelled
+       fragments.
+     - Verification per Section 3.6: extracted logic shows its real Node output;
+       DOM/React stages state what was confirmed in the sandbox paste.
+     The stage boundaries are chosen so that running out of time after ANY stage still
+     leaves a working, demonstrable build. -->
+
+## Edge Cases, Accessibility & Performance
+
+<!-- Three short blocks:
+     - Edge cases: table — Case | What goes wrong if ignored | The fix. Every row's fix
+       is present in the staged code above, or named as a deliberate cut.
+     - Accessibility: keyboard operation, focus management and the ARIA the widget
+       genuinely needs — only what applies to THIS widget, each with why.
+     - Performance: the traps of this build (listeners never removed, a render per
+       keystroke, unbounded lists) with the measured or counted cost where one was
+       derived in Section 3.6. -->
+
+## Variations
+
+<!-- The twists interviewers add to this build — remote data instead of local,
+     virtualize the list, persist across reloads, make it multi-select — each with the
+     key idea of the change in 2–3 sentences and which stage it would alter. These seed
+     the practice variations; do not solve them here. -->
+
+## Misconceptions & Traps
+
+<!-- 4–8 entries, same shape as the concept template (belief / why it seems right / why
+     it is wrong, with the smallest run or sandbox-confirmed behaviour that shows it /
+     the correct model). Findings from the learner's own code come FIRST, citing the
+     file. Build-specific traps belong here too: the debounce that loses `this`, the
+     handler closing over stale state, the fetch race. -->
+
+## Interview Notes
+
+<!-- How to narrate while building (say the plan, then the cut list, then code); where
+     the time budget from prep/how-to-study.md usually goes and where candidates lose
+     it; the follow-up questions after a working build, each with the key idea of the
+     reply; what distinguishes a senior answer on this build. -->
+```
+
+### 6.3 Template for a `design` question
+
+Used for both design focuses. The framework, its step names and the time budget come from `prep/how-to-study.md` for the recorded focus — frontend design questions and backend design questions follow different frameworks there, and this template bends to whichever one applies (see Section 8 for what each focus emphasizes).
+
+**Required Sections (use these exact headings, in this order):**
+
+```markdown
+# [Topic Name] — Deep Dive
+
+> **Track:** … · **Type:** design · **Focus:** … · **Scheduled:** … · **Generated:** YYYY-MM-DD
 
 ## The Question & What It Tests
 
 <!-- The prompt as an interviewer would say it; the clarifying questions worth asking,
      with the answers this doc assumes; and what the round scores — cross-reference
-     prep/how-to-study.md instead of restating it. -->
+     prep/how-to-study.md instead of restating it. Name the focus and what that focus
+     means the interviewer is listening for (Section 8). -->
 
 ## The Reference Answer
 
-<!-- One H3 per step of the framework that prep/how-to-study.md prescribes for this kind
-     of question, in that framework's order and under its own step names. For each step:
-     what you say, then why. Include the architecture as one diagram, the two or three
-     flows that matter as sequence diagrams, the data model and the interface as tables
-     or `ts` blocks, and every number with its arithmetic.
+<!-- One H3 per step of the framework that prep/how-to-study.md prescribes for this
+     focus, in that framework's order and under its own step names. For each step: what
+     you say, then why. Include the architecture as one diagram, the two or three flows
+     that matter as sequence diagrams, the data model and the interfaces as tables or
+     `ts` blocks, and every number with its arithmetic — backend numbers (QPS, storage,
+     fan-out) and frontend numbers (payload, render budget, cache hit rate) alike.
      This is the answer the learner compares their own timed attempt against: complete
      enough to compare against, and short enough to be said in the time the method
      allows. -->
@@ -587,7 +696,9 @@ The Deep Dive is the lesson itself. A learner reading it once, slowly, top to bo
 
 <!-- What breaks first as load, data size or bad luck grows; the failure and edge states
      (a slow network, stale data, a partial failure, a race); and for each, how the
-     design degrades and what the user sees. -->
+     design degrades and what the user sees. A frontend-focus answer always covers the
+     slow-network and mid-interaction-failure states — what renders while waiting, and
+     what the user sees when it never arrives. -->
 
 ## Weak Answers & Misconceptions
 
@@ -597,21 +708,22 @@ The Deep Dive is the lesson itself. A learner reading it once, slowly, top to bo
 ## Follow-Ups
 
 <!-- The directions an interviewer pushes after the base answer — ten times the scale,
-     offline, real-time, accessibility, security — each with the key idea of the reply
-     in 2–3 sentences. -->
+     offline, real-time, accessibility, security, the other focus ("and what does the
+     server/client side of this look like?") — each with the key idea of the reply in
+     2–3 sentences. -->
 
 ## Building Blocks
 
-<!-- The concepts this design leans on. Each is a link to its topic doc, or its name
-     followed by "(no doc yet)", with one line on the part it plays here. -->
+<!-- The concepts and builds this design leans on. Each is a link to its topic doc, or
+     its name followed by "(no doc yet)", with one line on the part it plays here. -->
 ```
 
 **Rules for deep-dive.md:**
 
 1. **Every Core Idea has exactly one home** — Each idea is taught in exactly one section, marked `*(Idea N)*` where its teaching starts. Other sections may refer to it; they do not re-teach it. An idea's level describes its difficulty; put its home where the explanation needs it.
-2. **Each section assumes only what came before it** — Level 2 never relies on something first explained in Level 3.
-3. **Shown output is real** — See Section 3.6 and Trace discipline in Section 4.2. Never present an output or a trace you did not observe.
-4. **Code is complete enough to run** — A block shown with its output is the whole program that produced it. Fragments appear only where a template asks for them, labelled as fragments of a block that was run whole.
+2. **Each section assumes only what came before it** — Level 2 never relies on something first explained in Level 3; a build stage never calls code that a later stage introduces.
+3. **Shown output is real** — See Section 3.6 and Trace discipline in Section 4.2. Never present an output or a trace you did not observe. DOM and React behaviour is either confirmed by a sandbox paste and labelled so, or described as expected — never shown as an output block.
+4. **Code is complete enough to run** — A block shown with its output is the whole program that produced it. A build stage is complete enough to paste into the sandbox and see the stage's claim. Fragments appear only where a template asks for them, labelled as fragments of a block that was run whole.
 5. **Wrong-on-purpose code says so** — Its first line is `// WRONG — [what it gets wrong]`. Show only the lines that matter, but run the whole thing first, and show the real output.
 6. **No re-teaching of prerequisites** — Cross-reference them, or use a primer of at most 8 lines (see The Cross-Reference Rule).
 7. **Flag unknowns** — If a claim could not be verified, flag it with `(recalled — verify)` rather than asserting it.
@@ -642,6 +754,9 @@ The practice file is the workbook. Everything in it is a question, and **every a
 <!-- 4–6 short items, 2–5 minutes each. IDs W1, W2, …
      `concept`: predict the output — the snippet is visible, the real output and the
        explanation are collapsed. Order them easy → tricky.
+     `machine-coding`: predict-the-output or spot-the-bug snippets on the JS the build
+       stands on (the closure in the debounce, the race in the fetch), plus one 3-minute
+       drill: sketch the component tree and state table from memory.
      `design`: quick drills — list the requirements you would ask about; name the three
        numbers you would estimate; sketch one request flow. -->
 
@@ -651,6 +766,9 @@ The practice file is the workbook. Everything in it is a question, and **every a
      writing no code. IDs S1, S2, …
      `concept`: a bug report, a surprising output or a performance complaint — which
        idea explains it?
+     `machine-coding`: a QA report on this widget ("results flicker and show the old
+       query", "the dropdown stays open after choosing") — which idea was violated, and
+       in which part of the build?
      `design`: a product situation — which approach fits, and why not the other one?
      Include one decoy for each confusable from Section 3.5 (for the three most commonly
      confused, if there are more), where this topic is NOT the answer. -->
@@ -662,9 +780,13 @@ The practice file is the workbook. Everything in it is a question, and **every a
      plan's own wording. THEN: more only where a Core Idea is exercised by nothing else.
      `concept`: implement from scratch — a polyfill, a utility, a small component — or
        configure something real. Use the Build Block format below.
+     `machine-coding`: B1 is always the full build, from a blank file, timed on the
+       method's budget — the Task restates only the behaviour contract, and the solution
+       links to the staged build in deep-dive.md instead of repeating it. Then 2–4
+       variations from deep-dive.md → Variations, each with the Build Block format.
      `design`: the full question, answered out loud on the method's time budget, then
-       2–4 variations (a new constraint, ten times the scale, a failure to survive).
-       Use the Design Block format below. -->
+       2–4 variations (a new constraint, ten times the scale, a failure to survive, the
+       other focus's side of the same product). Use the Design Block format below. -->
 
 ## Self-Check Questions
 
@@ -676,9 +798,10 @@ The practice file is the workbook. Everything in it is a question, and **every a
 ## Explain It Back
 
 <!-- 2–3 prompts to answer out loud. IDs E1, E2, … For example: "Explain this to a new
-     teammate in two minutes, starting from the analogy", or "Your interviewer asks why
-     you did not choose [confusable]. Answer." Each has a collapsed rubric: the 4–6 points
-     a complete answer makes. -->
+     teammate in two minutes, starting from the analogy", "Walk the interviewer through
+     your component and state design before writing code", or "Your interviewer asks why
+     you did not choose [confusable]. Answer." Each has a collapsed rubric: the 4–6
+     points a complete answer makes. -->
 ````
 
 **Item formats.** Every item is an H3 that starts with its ID (`### W2 — …`). The title must not give the answer away.
@@ -702,7 +825,7 @@ The explanation, in terms of the Core Ideas (#3, #5).
 </details>
 ````
 
-**Build Block** (`concept`):
+**Build Block** (`concept` and `machine-coding`):
 
 ````markdown
 ### B1 — `debounce(fn, delay)`
@@ -745,6 +868,8 @@ the real output of those calls
 </details>
 ````
 
+For a `machine-coding` B1 (the full build) the Solution block contains the approach, a link to `deep-dive.md` → The Build, In Stages, and the edge-case list — not a second copy of the code. A variation's Solution shows only the code that differs from the staged build, as labelled fragments, with any extracted logic run and its real output shown.
+
 **Design Block** (`design`):
 
 ````markdown
@@ -776,20 +901,30 @@ the real output of those calls
 3. **Hints are strictly graded** — Each hint gives away less than the one after it. A learner who opens only Hint 1 should still have real work left to do.
 4. **Fit the method, don't restate it** — The Mode on each Build It item (`from memory`, `timed`, `out loud`) follows the method `prep/how-to-study.md` gives for the track. Refer to its time budgets; do not copy the numbers, because the method may have changed since this prompt was written.
 5. **The plan's wording** — Scheduled work carries the plan's own name for it. If `prep/notes.md` already has a row for an item, say so on its italic line, and whether the row carries a `!`.
-6. **No repeats** — If a solution is the same code as `brief.md` → Know This Cold, link to it instead of printing it again. Write every task in your own words; do not reproduce a platform's problem text.
+6. **No repeats** — If a solution is the same code as `brief.md` → Know This Cold or the staged build in `deep-dive.md`, link to it instead of printing it again. Write every task in your own words; do not reproduce a platform's problem text.
 7. **No log tables** — Logging belongs to `prep/notes.md`. Do not add progress tables, trackers or score sheets, and do not pre-write the learner's notes line for them.
 
 ---
 
-## 8. When the Topic Is an Algorithm
+## 8. Design Focus: Frontend vs Backend
 
-DSA is not what this prompt is mainly for, but it handles an `algorithm` topic with a few adaptations. Everything above applies, plus:
+A `design` topic carries a focus, recorded in Section 3.3 and shown on every metadata line. The focus decides which framework `prep/how-to-study.md` prescribes, which numbers the answer derives, and what the interviewer is listening for. The template in 6.3 is the same for both; this table is what changes inside it:
 
-- **Discovery:** take the problems scheduled for the topic from `prep/daily/` under the sheet's exact names, and the pattern tags and triggers from `prep/patterns.md` — use its spellings and do not coin new tags. Read the learner's attempts in `codes/CPP/`; run one only when you suspect a bug, on the inputs that would expose it (ties, a single element, extreme values). Add `**Pattern tags:**` to the metadata line.
-- **Code:** C++17 in the style of `codes/CPP/`. Compile with `g++ -std=c++17 -Wall -Wextra -I"$HOME/.local/include" file.cpp -o [scratch dir]/a.out` — that include path holds the learner's stand-in for `<bits/stdc++.h>`, which Apple clang does not ship. The programs read standard input, so pipe the input in.
-- **Templates:** use the `concept` template for `deep-dive.md`. All of an algorithm's state is observable, so its traces are printed by an instrumented scratch copy of the code and pasted. **Know This Cold** holds the implementation to reproduce from a blank file. **Costs & Limits** is a table of Case | Time | Space | Why, with the recurrence or the counting argument shown in Level 3.
-- **Spot It:** each sketch is a problem; the answer names the pattern — with its tag from `prep/patterns.md` where one exists — and the trigger.
-- **Build It:** the scheduled problems first, extras only where a Core Idea is otherwise untested. Each gets a third hint (the approach, in at most four steps, no code) and a solution that was run on its example and its edge cases. Where a brute force follows directly from the problem statement, compare the solution against it on a few hundred random small inputs. The sheet's pattern tag may appear on a scheduled problem's italic line — the plan already shows it.
+| Aspect of the answer       | `frontend` focus                                                                                     | `backend` focus                                                                       |
+| -------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **The architecture diagram** | Component architecture: the app's regions, the state layer, the network/cache layer                   | Service boxes: clients, gateways, services, stores, queues                               |
+| **The interface step**     | The API contract from the client's side, and the component props/state interfaces, as `ts` blocks      | The API endpoints and the data model/schema, as `ts` blocks or tables                    |
+| **The numbers derived**    | Payload size, requests per interaction, render budget, cache hit rate, time to interactive            | QPS, storage per year, fan-out, read/write ratio, replication lag                        |
+| **The hard part probed**   | State shape and ownership, rendering strategy (CSR/SSR/ISR), caching and invalidation on the client, race conditions in the UI, optimistic updates, virtualization | Scaling the write or read path, partitioning, consistency vs availability, idempotency, rate and abuse control |
+| **The failure states**     | Slow network, offline, a request that fails mid-interaction, stale cache — what the user sees for each | A node dies, a partition, a hot key, a retry storm — how the system degrades             |
+| **Always-asked follow-ups** | Accessibility, performance on a low-end device, real-time updates                                      | Ten times the scale, multi-region, exactly-once vs at-least-once                         |
+
+Two disciplines that apply to both focuses:
+
+- **The other side is acknowledged, not designed.** A frontend-focus answer states its assumptions about the API in one or two lines and moves on; a backend-focus answer does the same for the client. The crossover lives in Follow-Ups.
+- **LLD questions** (design a parking lot, a splitwise) take the `design` type with the focus the plan's label implies (`LLD` slots are backend focus unless the plan says otherwise), and their interface step shows one core flow in code where the method asks for it.
+
+A design question that genuinely spans both sides at the target depth ("design a chat app, end to end") is still **one** focus — the one the target interviews score — with the other side compressed into the assumptions and follow-ups. If the plan schedules both sides separately, they are two topics with two slugs, and each links the other under Building Blocks.
 
 ---
 
@@ -800,11 +935,11 @@ Before writing any documentation, confirm:
 - [ ] Read the reference documents relevant to the topic: `prep/README.md` (goal, out-of-scope list), `prep/how-to-study.md` (the method for this track), `prep/daily/` (schedule, and the work scheduled around the topic)
 - [ ] **Noted what Layer 1 already holds** about this topic — these become cross-references, not restated content
 - [ ] Read the existing notes and the learner's related code; wrote the Learner Baseline, every bullet backed by a file
-- [ ] Classified the topic type and wrote the three-line scope
+- [ ] Classified the topic type (and the design focus, for a `design` topic) and wrote the scope
 - [ ] Built the Core Ideas list (6–14 ideas, in learning order)
 - [ ] Discovered prerequisites, confusables and unlocks, with a status for each prerequisite
 - [ ] **Stopped at the confirmation gate and received the user's answer**
-- [ ] Ran the snippets, chose the running example, derived the numbers, classified each real-world claim
+- [ ] Ran the snippets, extracted and ran the build's pure logic, chose the running example, derived the numbers, classified each real-world claim
 
 While writing:
 
@@ -813,6 +948,7 @@ While writing:
 - [ ] One analogy and one running example carried through all three files
 - [ ] **Nothing from Layer 1 is restated** — only cross-references with topic-specific context added
 - [ ] Every visual follows Section 4.2; no visual is narrated a second time in prose
+- [ ] (`machine-coding`) Every build stage is a working checkpoint, verified per Section 3.6
 - [ ] Every answer in `practice.md` and every Check-yourself answer in `deep-dive.md` is inside `<details>`
 
 After writing:
@@ -829,7 +965,7 @@ After writing:
 After all three documents are written, check them **as saved on disk**. These checks need nothing but a shell and a careful read — do not build tooling for them.
 
 1. **Coverage:** Every Core Idea has (a) a row in `brief.md` → Core Ideas, (b) a home in `deep-dive.md`, marked `*(Idea N)*`, and (c) at least one `practice.md` item named in its "Tested by" cell. Every item ID named in that table exists.
-2. **Shown output is real:** Copy the snippet under `brief.md` → Know This Cold and every Warm-Up snippet out of the saved files, run each one, and confirm that the output printed beside it is exactly what it prints. Do the same for any other output you did not capture from a run while writing. A block labelled `Not run` has no output beside it.
+2. **Shown output is real:** Copy the snippet under `brief.md` → Know This Cold, every Warm-Up snippet and every extracted-logic block out of the saved files, run each one, and confirm that the output printed beside it is exactly what it prints. Do the same for any other output you did not capture from a run while writing. A block labelled `Not run` has no output beside it.
 3. **Know This Cold matches:** any code in it is identical, character for character, to the same block in `deep-dive.md`.
 4. **Hidden answers:** Every output, hint, solution, answer and rubric in `practice.md`, and every Check-yourself answer in `deep-dive.md`, sits inside `<details>`. Any code fence that is visible outside `<details>` in `practice.md` is part of a question.
 5. **Markdown (per Section 4.1):** Run the commands below. Then read the prose once for: a `<` followed by a letter outside backticks (other than `<details>` and `<summary>`), an unescaped `|` inside a table cell, a fence with no language tag, and a template comment left in the output.
@@ -858,10 +994,10 @@ Pass conditions: each file has one H1 (a count above 1 is acceptable only if the
 
 - The files written
 - Coverage: the number of Core Ideas, and confirmation that each has a row, a home and a practice item
-- Code: how many snippets were run, and which blocks are labelled `Not run`
+- Code: how many snippets were run, which blocks are labelled `Not run`, and which build stages were confirmed by a sandbox paste
 - Every `(recalled — verify)` flag, with the file it is in
 - Findings in the learner's own code: the file, and the run that shows the problem
-- Suggested additions to Layer 1 (a missing trigger in `prep/patterns.md`, a gap in the plan) — **suggested, not applied**
+- Suggested additions to Layer 1 (a gap in the plan, a missing method note in `prep/how-to-study.md`) — **suggested, not applied**
 - Anything skipped, and why
 
 If any check fails, fix the file and re-run that check before reporting. Do not report a check as passed that you did not run.
@@ -886,7 +1022,7 @@ Generated with `TopicMasteryPrompt.md`. One folder per topic: a brief, a deep di
 | Event Loop — Call Stack, Task Queue & Microtask Queue | JS | `concept` | [brief](eventLoop/brief.md) · [deep dive](eventLoop/deep-dive.md) · [practice](eventLoop/practice.md) | [execution context](../../JS-docs/lexicalEnvExecContextHoisting.md) | YYYY-MM-DD |
 ```
 
-Keep the rows in plan order (week, then day); topics that are not on the plan go at the end.
+A `design` topic's Type cell reads `` `design` (frontend) `` or `` `design` (backend) ``. Keep the rows in plan order (week, then day); topics that are not on the plan go at the end.
 
 ### 11.2 Resolve dangling references
 
@@ -903,7 +1039,7 @@ Search every existing file under `docs/topics/` for `(no doc yet)`. Wherever the
 The following are **NOT** part of this prompt's responsibility:
 
 - Writing rows into `prep/notes.md` — the learner writes their own line; that is the exercise.
-- Editing `prep/how-to-study.md` or `prep/patterns.md` — suggest additions in the completion report; the learner decides.
+- Editing `prep/how-to-study.md` — suggest additions in the completion report; the learner decides.
 - Adding files to `codes/`, `HTML_JS_Sandbox/` or the React sandbox — those hold the learner's own attempts only.
 - Rewriting or moving the older notes in `JS-docs/`.
 - Changing the schedule in `prep/README.md` or `prep/daily/`.
@@ -918,5 +1054,5 @@ After the completion report, offer **once** to quiz the learner on the topic. If
 2. **After each answer:** say whether it is right, correct or extend it in 2–4 sentences, rate the learner's understanding from 1 to 10, then ask the next question. If the answer exposed a gap, the next question goes at that gap rather than moving on.
 3. **Fresh questions.** Draw on the Core Ideas, but do not reuse the items in `practice.md` word for word — those are for the learner's own solo work.
 4. **"That didn't click."** Re-explain that one idea from a different angle — a new example first; a new analogy only if the original one fails for this idea. If the new framing lands, offer to replace the old one in the docs.
-5. **On request:** argue a trade-off as a debate — one voice for the approach, one skeptical — and end with a neutral verdict.
+5. **On request:** run a mock round — interviewer voice only, on the method's time budget: a cold predict-the-output set for a `concept`, the build prompt with follow-ups for `machine-coding`, or the design question with pushbacks for `design` — then debrief against the Core Ideas. Or argue a trade-off as a debate — one voice for the approach, one skeptical — and end with a neutral verdict.
 6. **Wrap up** after about 10 questions, or when asked: list the ideas answered confidently, the ones that were shaky, and the `deep-dive.md` sections worth re-reading. Do not write to `prep/notes.md` — tell the learner what is worth logging.
