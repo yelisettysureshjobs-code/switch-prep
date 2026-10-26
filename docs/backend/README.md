@@ -5,3 +5,4 @@ Generated with `TopicMasteryPrompt.md`. One folder per topic: a brief, a deep di
 | Topic | Track | Type | Docs | Prerequisites | Generated |
 | ----- | ----- | ---- | ---- | ------------- | --------- |
 | Postgres — Schema Design, Normalization & the Joins You'll Actually Use | BE | `concept` | [brief](postgresSchemaJoins/brief.md) · [deep dive](postgresSchemaJoins/deep-dive.md) · [practice](postgresSchemaJoins/practice.md) | SQL basics (no doc yet) · REST resources (no doc yet) | 2026-10-20 |
+| Indexes — What They Cost, When They Help, EXPLAIN | BE | `concept` | [brief](indexes/brief.md) · [deep dive](indexes/deep-dive.md) · [practice](indexes/practice.md) | [schema & joins](postgresSchemaJoins/brief.md) · SQL basics (no doc yet) | 2026-10-24 |

@@ -129,28 +129,45 @@
 // const bindedHello1 = sayHello.myBind(user);
 // bindedHello1("CPT");
 
-const tabParent = document.getElementById("tab-parent");
-const tabsContainer = document.getElementById("tabs");
+// const tabParent = document.getElementById("tab-parent");
+// const tabsContainer = document.getElementById("tabs");
 
-function activateTab(tabId) {
-  Array.from(tabsContainer.children).forEach((panel) => {
-    panel.classList.toggle("hidden", panel.id !== `tab-${tabId}`);
-  });
-}
+// function activateTab(tabId) {
+//   Array.from(tabsContainer.children).forEach((panel) => {
+//     panel.classList.toggle("hidden", panel.id !== `tab-${tabId}`);
+//   });
+// }
 
-function handleTabEvent(event) {
-  const tab = event.target.closest("[data-tab]");
+// function handleTabEvent(event) {
+//   const tab = event.target.closest("[data-tab]");
 
-  if (!tab || !tabParent.contains(tab)) return;
+//   if (!tab || !tabParent.contains(tab)) return;
 
-  if (event.type === "keydown") {
-    if (!["Enter", " "].includes(event.key)) return;
+//   if (event.type === "keydown") {
+//     if (!["Enter", " "].includes(event.key)) return;
 
-    event.preventDefault();
+//     event.preventDefault();
+//   }
+
+//   activateTab(tab.dataset.tab);
+// }
+
+// tabParent.addEventListener("click", handleTabEvent);
+// tabParent.addEventListener("keydown", handleTabEvent);
+
+// const order = Promise.resolve("pizza");
+// const order = new Promise((resolve) => setTimeout(resolve("pizza"), 2000));
+// order.then(function slice(food) {
+//   console.log("slicing the", food);
+// });
+// console.log("setting the table");
+
+async function retry(fn, attempts) {
+  if (attempts == 0) return;
+  try {
+    await fn();
+  } catch (err) {
+    console.log(err);
+    retry(fn, attempts - 1);
   }
-
-  activateTab(tab.dataset.tab);
 }
-
-tabParent.addEventListener("click", handleTabEvent);
-tabParent.addEventListener("keydown", handleTabEvent);

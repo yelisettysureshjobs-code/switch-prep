@@ -99,7 +99,7 @@ Hard limits: there is no preemption — nothing can interrupt a running function
 
 - [Execution Context, Lexical Environment & Hoisting](../../../JS-docs/lexicalEnvExecContextHoisting.md) — the call stack this whole topic stands on
 - [Lexical Scope, Scope Chain & Closures](../../../JS-docs/lexicalScopeScopeChainClosures.md) — every queued callback keeps its scope; debounce lives on this
-- Promise basics — 8-line primer in [deep-dive.md](deep-dive.md) → Level 2; the full promises topic (no doc yet)
+- Promise basics — 8-line primer in [deep-dive.md](deep-dive.md) → Level 2; the full [promises topic](../promises/brief.md)
 
 **Confusables**
 

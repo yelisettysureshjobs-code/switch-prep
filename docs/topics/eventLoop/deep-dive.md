@@ -99,7 +99,7 @@ step  runs                    task     prints  why now
 > a **promise** is an object that stands for a value that will exist later.
 > `Promise.resolve("x")` makes one whose value is already there.
 > `p.then(fn)` registers `fn` to be called with that value, later.
-> Chaining and error handling belong to the promises topic (no doc yet).
+> Chaining and error handling belong to the [promises topic](../promises/brief.md).
 
 Extend the running example with one promise line:
 

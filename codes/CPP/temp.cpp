@@ -50,6 +50,16 @@ int countInversions(vector<int> &v, int s, int e)
     return c;
 }
 
+bool possibleKoko(vector<int> &v, int n, int k, int m)
+{
+    int c = 0;
+    for (int i = 0; i < n; i++)
+    {
+        c += (v[i] + m - 1) / m;
+    }
+    return c <= k;
+}
+
 int main()
 {
     // int n, k;
@@ -64,7 +74,6 @@ int main()
     // while (r < n)
     // {
     //     sum += v[r];
-
     //     while (sum > k && l <= r)
     //     {
     //         sum -= v[l];
@@ -93,7 +102,6 @@ int main()
     //     }
     // }
     // cout << maxL << endl;
-
     // unordered_map<int, int> o;
     // vector<vector<int>> ans;
     // for (int i = 0; i < n; i++)
@@ -102,14 +110,12 @@ int main()
     //     {
     //         ans.push_back({o[k - v[i]], i});
     //     }
-
     //     o[v[i]] = i;
     // }
     // for (vector<int> t : ans)
     // {
     //     cout << t[0] << ' ' << t[1] << endl;
     // }
-
     // int z = 0, o = 0, t = n - 1;
     // while (o <= t) // = is there because , after the t is moved it can be on a diff element than 2 ,
     // // so o needs to check that element also after that element all will be 2's so no need to continue
@@ -144,7 +150,6 @@ int main()
     // int mE = v[0], mc = 1;
     // for (int i = 1; i < n; i++)
     // {
-
     //     if (mE == v[i])
     //     {
     //         mc++;
@@ -206,7 +211,6 @@ int main()
     // {
     //     cout << s << endl;
     // }
-
     // int cs = 0, maxs = INT_MIN, bestL, bestR, start;
     // for (int i = 0; i < n; i++)
     // {
@@ -224,7 +228,6 @@ int main()
     // {
     //     cout << v[i] << ' ';
     // }
-
     // unordered_map<int, int> o;
     // o[0] = 1; // if we are checking for max length then this should be -1 , else 1 if we want the count of sub array's
     // int sum = 0, cnt = 0;
@@ -239,7 +242,6 @@ int main()
     //     o[sum]++;
     // }
     // cout << cnt << endl;
-
     // int maxc = 0;
     // unordered_set<int> o(v.begin(), v.end());
     // for (int i = 0; i < n; i++)
@@ -257,7 +259,6 @@ int main()
     //     }
     // }
     // cout << maxc << endl;
-
     // string s;
     // cin >> s;
     // unordered_map<char, int> o;
@@ -275,7 +276,6 @@ int main()
     //     o[s[i]] = i;
     // }
     // cout << maxL << endl;
-
     // int n;
     // cin >> n;
     // vector<int> v(n, 0);
@@ -318,7 +318,6 @@ int main()
     //     }
     // }
     // cout << -1 << endl;
-
     // int n, m;
     // cin >> n >> m;
     // int k;
@@ -354,57 +353,103 @@ int main()
     // {
     //     cout << 'not found' << endl;
     // }
+    // int n;
+    // cin >> n;
+    // vector<int> v(n, 0);
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cin >> v[i];
+    // }
+    // int h, f = 0;
+    // cin >> h;
+    // int l = 0, r = n - 1;
+    // while (l <= r)
+    // {
+    //     int mid = (l + r) / 2;
+    //     if (v[mid] == h)
+    //     {
+    //         cout << "found" << endl;
+    //         cout << mid << endl;
+    //         f = 1;
+    //         break;
+    //     }
+    //     if (v[l] == v[mid] && v[mid] == v[r])
+    //     {
+    //         l++,r--;
+    //         continue;
+    //     }
+    //     if (v[l] < v[mid])
+    //     {
+    //         if (v[l] < h && h < v[mid])
+    //         {
+    //             r = mid - 1;
+    //         }
+    //         else
+    //         {
+    //             l = mid + 1;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         if (v[mid] < h && h < v[r])
+    //         {
+    //             l = mid + 1;
+    //         }
+    //         else
+    //         {
+    //             r = mid - 1;
+    //         }
+    //     }
+    // }
+    // if (!f)
+    // {
+    //     cout << "not found" << endl;
+    // }
+    // int n, k;
+    // cin >> n >> k;
+    // vector<int> v(n, 0);
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cin >> v[i];
+    // }
+    // int l = 1, r = INT_MIN;
+    // for (int a : v)
+    // {
+    //     r = max(r, a);
+    // }
+    // int ans = -1;
+    // while (l <= r)
+    // {
+    //     int mid = (l + r) / 2;
+    //     if (possibleKoko(v, n, k, mid))
+    //     {
+    //         r = mid - 1;
+    //         ans = mid;
+    //     }
+    //     else
+    //     {
+    //         l = mid + 1;
+    //     }
+    // }
+    // cout << ans << endl;
 
-    int n;
-    cin >> n;
-    vector<int> v(n, 0);
-    for (int i = 0; i < n; i++)
+    string s;
+    getline(cin, s);
+    unordered_map<char, int> o;
+    int l = 0, r = 0, ans = 0;
+    while (r < s.size())
     {
-        cin >> v[i];
+
+        if (o.find(s[r]) != o.end())
+        {
+            if (l <= o[s[r]])
+            {
+                l = o[s[l]] + 1;
+            }
+        }
+        o[s[r]] = r;
+        ans = max(ans, r - l + 1);
+        r++;
     }
-    int h, f = 0;
-    cin >> h;
-    int l = 0, r = n - 1;
-    while (l <= r)
-    {
-        int mid = (l + r) / 2;
-        if (v[mid] == h)
-        {
-            cout << "found" << endl;
-            cout << mid << endl;
-            f = 1;
-            break;
-        }
-        if (v[l] == v[mid] && v[mid] == v[r])
-        {
-            l++,r--;
-            continue;
-        }
-        if (v[l] < v[mid])
-        {
-            if (v[l] < h && h < v[mid])
-            {
-                r = mid - 1;
-            }
-            else
-            {
-                l = mid + 1;
-            }
-        }
-        else
-        {
-            if (v[mid] < h && h < v[r])
-            {
-                l = mid + 1;
-            }
-            else
-            {
-                r = mid - 1;
-            }
-        }
-    }
-    if (!f)
-    {
-        cout << "not found" << endl;
-    }
+    cout << ans << endl;
 }

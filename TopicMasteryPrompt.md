@@ -8,9 +8,9 @@
 
 ## 1. Target Topic
 
-[Postgres — schema design, normalization, the joins you'll actually use]
+BE: indexes — what they cost, when they help, EXPLAIN on your own queries
 
-**Topic Slug:** Postgres
+**Topic Slug:** indexes
 
 > This is the directory name used for docs path resolution: `docs/topics/[topic_slug]/`. Use camelCase, like the files in `JS-docs/` and `codes/` (e.g., `eventLoop`, `buildAutocomplete`, `designNewsFeed`, `designRateLimiter`).
 
