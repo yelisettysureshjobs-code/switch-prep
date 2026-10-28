@@ -1,12 +1,18 @@
-import Accordion from "./components/Accordion";
+// import { useState } from "react";
+// import Accordion from "./components/Accordion";
+// import Modal from "./components/Modal";
+// import Tooltip from "./components/Tooltip";
+import AutoComplete from "./components/AutoComplete";
 
 export default function App() {
+  // const [isOpen, setIsOpen] = useState(false);
+
   return (
     // Page layout moved here from StarRating so the component stays reusable
-    <div className="w-full min-h-screen flex items-center justify-center">
+    <div className="">
       {/* <StarRating noOfStars={10} />
        */}
-      <Accordion
+      {/* <Accordion
         items={[
           {
             key: "1",
@@ -53,7 +59,32 @@ export default function App() {
         ]}
         disabled={false}
         openItemsKeys={["1", "3"]}
-      />
+      /> */}
+      {/* <button
+        onClick={() => setIsOpen(true)}
+        className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+      >
+        Open Modal
+      </button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <h2 className="mb-2 text-xl font-semibold">Hello!</h2>
+        <p className="mb-4 text-gray-600">
+          This is a simple modal using React Portal.
+        </p>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="rounded-md bg-gray-200 px-4 py-2 hover:bg-gray-300"
+        >
+          Close Modal
+        </button>
+      </Modal> */}
+
+      {/* <Tooltip text="This is a tooltip">
+        <button className="rounded-md bg-blue-600 px-4 py-2 text-white">
+          Hover Me
+        </button>
+      </Tooltip> */}
+      <AutoComplete items={["suresh", "ramesh", "mukesh"]} />
     </div>
   );
 }

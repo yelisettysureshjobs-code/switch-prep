@@ -35,7 +35,7 @@ int main()
         // Find the rightmost element greater than pivot
         int maxR = n - 1;
 
-        for (int i = maxR; i >= 0; i--)
+        for (int i = maxR; i >= 0; i--, maxR--)
         {
             if (v[maxR] >= v[pivot])
             {
