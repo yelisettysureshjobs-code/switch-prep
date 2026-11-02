@@ -162,12 +162,57 @@
 // });
 // console.log("setting the table");
 
-async function retry(fn, attempts) {
-  if (attempts == 0) return;
-  try {
-    await fn();
-  } catch (err) {
-    console.log(err);
-    retry(fn, attempts - 1);
+// async function retry(fn, attempts) {
+//   if (attempts == 0) return;
+//   try {
+//     await fn();
+//   } catch (err) {
+//     console.log(err);
+//     retry(fn, attempts - 1);
+//   }
+// }
+
+Function.prototype.mycall = function (obj = {}, ...args) {
+  if (typeof this !== "function") {
+    throw new Error("Not callable");
   }
+
+  obj.fun = this;
+  try {
+    obj.fun(...args);
+  } finally {
+    delete obj.fun;
+  }
+};
+
+Function.prototype.myApply = function (obj = {}, args = []) {
+  if (typeof this !== "function") {
+    throw new Error("Not callable");
+  }
+  if (!Array.isArray(args)) {
+    throw new Error("Not an array");
+  }
+  obj.fun = this;
+  obj.fun(...args);
+};
+Function.prototype.myBind = function (obj = {}, ...args1) {
+  if (typeof this !== "function") {
+    throw new Error("Not callable");
+  }
+  obj.fun = this;
+  return (...args2) => {
+    return obj.fun(...args1, ...args2);
+  };
+};
+
+function sayHello(place) {
+  console.log(`hi, ${this.name} . how is ${place}?`);
 }
+function sayHello2(place, weather) {
+  console.log(`hi, ${this.name} . is ${place} - ${weather}?`);
+}
+
+sayHello.mycall({ name: "suresh" }, "bengaluru");
+// sayHello2.myApply({ name: "suresh" }, ["bengaluru", "cool"]);
+// const bindHello = sayHello2.myBind({ name: "suresh" }, "bengaluru");
+// bindHello("humid");

@@ -60,6 +60,74 @@ bool possibleKoko(vector<int> &v, int n, int k, int m)
     return c <= k;
 }
 
+bool possibleBook(vector<int> &v, int n, int k, int mid)
+{
+    int s = 1, curPages = v[0];
+    for (int i = 1; i < n; i++)
+    {
+        if (curPages + v[i] > mid)
+        {
+            s++;
+            curPages = v[i];
+        }
+        else
+        {
+            curPages += v[i];
+        }
+    }
+    return s <= k;
+}
+
+bool possibleBook2(vector<int> &v, int n, int k, int mid)
+{
+    int curPages = v[0], s = 1;
+    for (int i = 1; i < n; i++)
+    {
+        if (curPages + v[i] > mid)
+        {
+            curPages = v[i];
+            s++;
+        }
+        else
+        {
+            curPages += v[i];
+        }
+    }
+    return s <= k;
+}
+
+void helper(int ind, int t, vector<int> v, int n, vector<int> &ds, vector<vector<int>> &ans)
+{
+
+    if (ind == n || t <= 0)
+    {
+        if (t == 0)
+        {
+            ans.push_back(ds);
+        }
+        return;
+    }
+
+    if (v[ind] <= t)
+    {
+        ds.push_back(v[ind]);
+        helper(ind + 1, t - v[ind], v, n, ds, ans);
+        ds.pop_back();
+    }
+    while (ind < n - 1 && v[ind] == v[ind + 1])
+    {
+        ind++;
+    }
+    helper(ind + 1, t, v, n, ds, ans);
+}
+vector<vector<int>> combination(vector<int> v, int n, int t)
+{
+    vector<vector<int>> ans;
+    vector<int> ds;
+    helper(0, t, v, n, ds, ans);
+    return ans;
+}
+
 int main()
 {
     // int n, k;
@@ -432,24 +500,69 @@ int main()
     //     }
     // }
     // cout << ans << endl;
+    // string s;
+    // getline(cin, s);
+    // unordered_map<char, int> o;
+    // int l = 0, r = 0, ans = 0;
+    // while (r < s.size())
+    // {
+    //     if (o.find(s[r]) != o.end())
+    //     {
+    //         if (l <= o[s[r]])
+    //         {
+    //             l = o[s[l]] + 1;
+    //         }
+    //     }
+    //     o[s[r]] = r;
+    //     ans = max(ans, r - l + 1);
+    //     r++;
+    // }
+    // cout << ans << endl;
+    // int n, k;
+    // cin >> n >> k;
+    // vector<int> v(n, 0);
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cin >> v[i];
+    // }
+    // int l = *max_element(v.begin(), v.end());
+    // int r = accumulate(v.begin(), v.end(), 0);
+    // if (k > n)
+    // {
+    //     cout << -1 << endl;
+    // }
+    // else
+    // {
+    //     while (l <= r)
+    //     {
+    //         int mid = (l + r) / 2;
+    //         if (possibleBook2(v, n, k, mid))
+    //         {
+    //             r = mid - 1;
+    //         }
+    //         else
+    //         {
+    //             l = mid + 1;
+    //         }
+    //     }
+    //     cout << l << endl;
+    // }
 
-    string s;
-    getline(cin, s);
-    unordered_map<char, int> o;
-    int l = 0, r = 0, ans = 0;
-    while (r < s.size())
+    int n, k;
+    cin >> n >> k;
+    vector<int> v(n, 0);
+    for (int i = 0; i < n; i++)
     {
-
-        if (o.find(s[r]) != o.end())
-        {
-            if (l <= o[s[r]])
-            {
-                l = o[s[l]] + 1;
-            }
-        }
-        o[s[r]] = r;
-        ans = max(ans, r - l + 1);
-        r++;
+        cin >> v[i];
     }
-    cout << ans << endl;
+    sort(v.begin(), v.end());
+    vector<vector<int>> ans = combination(v, n, k);
+    for (vector<int> row : ans)
+    {
+        for (int element : row)
+        {
+            cout << element << " ";
+        }
+        cout << endl;
+    }
 }

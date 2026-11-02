@@ -21,30 +21,47 @@ sayHello.myCall(user, "NRT");
 
 sayHello.apply(user, ["NRT"]);
 
-Function.prototype.myApply = function (object = {}, ...args) {
-  console.log(this, object, ...args);
+Function.prototype.myApply = function (obj = {}, args = []) {
   if (typeof this !== "function") {
-    throw new Error("Not Callable");
+    throw new Error("Not callable");
   }
+
   if (!Array.isArray(args)) {
-    throw new Error("TypeError: CreateListFromArrayLike called on non-object");
+    throw new TypeError("Arguments must be an array");
   }
-  object.func = this;
-  object.func(...args);
+
+  obj = obj ?? {};
+
+  const key = Symbol("fn");
+  obj[key] = this;
+
+  try {
+    return obj[key](...args);
+  } finally {
+    delete obj[key];
+  }
 };
 sayHello.myApply(user, ["NRT"]);
 
 const bindedHello = sayHello.bind(user);
 bindedHello("NRT");
 
-Function.prototype.myBind = function (object = {}, ...args1) {
-  console.log(this, object, ...args1);
+Function.prototype.myBind = function (obj = {}, ...args) {
   if (typeof this !== "function") {
-    throw new Error("Not Callable");
+    throw new TypeError("Not callable");
   }
-  object.func = this;
-  return function (...args2) {
-    object.func(...args1, ...args2);
+
+  const fn = this;
+
+  return function (...newArgs) {
+    const key = Symbol("fn");
+    obj[key] = fn;
+
+    try {
+      return obj[key](...args, ...newArgs);
+    } finally {
+      delete obj[key];
+    }
   };
 };
 

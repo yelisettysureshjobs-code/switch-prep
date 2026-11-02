@@ -1,54 +1,77 @@
-import { useEffect, useRef, useState } from "react";
-import { debounce } from "lodash";
+import { useEffect, useState } from "react";
 
-const AutoComplete = ({ items }) => {
-  //   console.log("items", items);
-  const inputRef = useRef(null);
+const AutoComplete = () => {
   const [search, setSearch] = useState("");
-  const [searchItems, setSearchItems] = useState(items);
-  const handleOnChange = (e) => {
-    debounce(() => {
-      console.log(e.target.value);
-      setSearch(e.target.value);
-    }, 400);
+  const [recipes, setRecipes] = useState(null);
+  const [cache, setCache] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const fetchRecipes = async (signal) => {
+    if (cache[search] !== undefined) {
+      console.log("returned cache");
+      setRecipes(cache[search]);
+      return;
+    }
+    setLoading(true);
+    console.log("called for ", search);
+    const res = await fetch(
+      `https://dummyjson.com/recipes/search?q=${search}`,
+      { signal: signal },
+    );
+    const value = await res.json();
+    setRecipes(value.recipes);
+    setCache((prev) => ({
+      ...prev,
+      [search]: value.recipes,
+    }));
+    setLoading(false);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setSearchItems([...items].filter((item) => item.includes(search)));
-  }, [items, search]);
-
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => fetchRecipes(ctrl.signal), 500);
+    return () => {
+      clearTimeout(timer);
+      ctrl.abort();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search]);
   return (
-    <div
-      id="autocomplete-container"
-      className="flex flex-col gap-y-2 w-screen items-center justify-center h-screen"
-    >
-      <input
-        type="text"
-        value={search}
-        onChange={handleOnChange}
-        id="auto-complete-input"
-        placeholder="Enter the value"
-        className="border border-solid border-black rounded-md p-2 inline w-fit fixed"
-        ref={inputRef}
-      />
-      {search?.length > 0 ? (
-        <div className="fixed top-[54%] border border-solid border-black rounded-md w-[198px]  flex flex-col items-center justify-between p-2">
-          {searchItems.map((item) => (
-            <div
-              key={item}
-              className="h-6 "
-              onClick={(value) => {
-                console.log(value.target.innerText);
-                setSearch(value.target.innerText);
-              }}
-            >
-              {item}
-            </div>
-          ))}
+    <div className="w-screen flex flex-col items-center justify-center mt-10">
+      <div>
+        <input
+          value={search}
+          type="text"
+          placeholder="Enter the value"
+          className="border border-solid border-black p-2 rounded-md w-[500px] outline-none"
+          onChange={handleSearchChange}
+        />
+      </div>
+      {search ? (
+        <div className="w-[500px] text-center border border-solid border-black rounded-md mt-2 max-h-96 overflow-y-auto">
+          {loading ? (
+            <div className="p-2  ">fetching data</div>
+          ) : recipes?.length > 0 ? (
+            recipes?.map((recipe) => {
+              return (
+                <span
+                  className="block py-2 hover:bg-gray-100 rounded-md"
+                  key={recipe.id}
+                >
+                  {recipe.name}
+                </span>
+              );
+            })
+          ) : (
+            <div className="p-2">No Recipes Found</div>
+          )}
         </div>
       ) : (
-        <div></div>
+        <></>
       )}
     </div>
   );
